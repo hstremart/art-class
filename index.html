@@ -3,482 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>앤더슨 비평 4단계</title>
-<meta name="description" content="중학교 1학년 미술 감상 1차시 — 앤더슨 비평 4단계(반응·기술·해석·평가)로 김홍도 〈씨름〉 감상하기">
+<title>1학년 미술 수업실</title>
+<meta name="description" content="중학교 1학년 미술 수업 콘텐츠 모음">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#f7f3ec; --surface:#fffdf9; --surface-2:#f1ebe1; --ink:#2a2420; --ink-2:#5e554d; --line:#e2d9cc;
-  --s1:#c4553a; --s1-soft:#f8e4dd;   /* 반응 */
-  --s2:#2f6690; --s2-soft:#deeaf3;   /* 기술 */
-  --s3:#3f7d4e; --s3-soft:#e1efe3;   /* 해석 */
-  --s4:#7a4a8c; --s4-soft:#ece2f1;   /* 평가 */
-  --accent:var(--ink); --radius:14px; --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 20px rgba(60,40,20,.06);
+  --a-감상:#2f6690; --a-표현:#c4553a; --a-체험:#3f7d4e;
+  --radius:16px; --shadow:0 1px 2px rgba(60,40,20,.06),0 8px 24px rgba(60,40,20,.08);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
-    --s1:#ec8a70; --s1-soft:#3b2620; --s2:#7fb2dc; --s2-soft:#1f2c38; --s3:#86c294; --s3-soft:#1f3124; --s4:#c49ad4; --s4-soft:#30243a;
-    --shadow:none;
+    --a-감상:#7fb2dc; --a-표현:#ec8a70; --a-체험:#86c294; --shadow:none;
   }
 }
 :root[data-theme="dark"]{
   --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
-  --s1:#ec8a70; --s1-soft:#3b2620; --s2:#7fb2dc; --s2-soft:#1f2c38; --s3:#86c294; --s3-soft:#1f3124; --s4:#c49ad4; --s4-soft:#30243a;
-  --shadow:none;
+  --a-감상:#7fb2dc; --a-표현:#ec8a70; --a-체험:#86c294; --shadow:none;
 }
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
-h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.3;margin:0 0 .5em}
-img{max-width:100%;display:block}
-button{font:inherit;color:inherit}
+h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.3;margin:0}
 .wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-
-/* header & nav */
-header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-.top .wrap{display:flex;align-items:center;gap:12px;height:56px}
-.brand{font-family:"Gowun Batang",serif;font-weight:700;white-space:nowrap}
-.steps{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
-.steps::-webkit-scrollbar{display:none}
-.steps button{border:0;background:none;padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-size:14px}
-.steps button[aria-current="true"]{background:var(--ink);color:var(--bg)}
-.steps button .n{font-weight:700;margin-right:3px}
-
-section.panel{display:none;padding:28px 0 64px}
-section.panel.on{display:block;animation:fade .25s ease}
-@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-
-/* intro */
-.hero{display:grid;gap:28px;grid-template-columns:1.1fr .9fr;align-items:center;padding:12px 0 8px}
-.hero h1{font-size:clamp(28px,5vw,44px)}
-.hero p.lead{font-size:18px;color:var(--ink-2)}
-.goal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
-.goal b{display:block;font-size:13px;color:var(--ink-2);letter-spacing:.04em;margin-bottom:4px}
-.goal ul{margin:0;padding-left:20px}
-.cover{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
-.cover figcaption{font-size:13px;color:var(--ink-2);padding:8px 12px;background:var(--surface)}
-
-.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0}
-.card4{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--radius);padding:16px}
-.card4 .k{font-size:13px;color:var(--c);font-weight:700}
-.card4 h3{font-size:22px;margin:2px 0 6px}
-.card4 p{margin:0;color:var(--ink-2);font-size:15px}
-.arrow{color:var(--ink-2);font-size:14px;text-align:center;margin-top:-14px}
-
-.example{display:grid;grid-template-columns:320px 1fr;gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
-.example img{border-radius:10px}
-.example .meta{font-size:13px;color:var(--ink-2);margin-top:8px}
-.ex-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
-.ex-tabs button{border:1px solid var(--line);background:var(--surface-2);padding:4px 12px;border-radius:999px;cursor:pointer;font-size:14px}
-.ex-tabs button.on{background:var(--c);border-color:var(--c);color:#fff}
-.ex-body{min-height:150px;font-size:15.5px}
-.ex-body mark{background:var(--s2-soft);color:inherit;padding:0 2px;border-radius:3px}
-
-.cta{display:flex;justify-content:center;margin-top:28px}
-.btn{border:0;border-radius:999px;padding:12px 22px;background:var(--ink);color:var(--bg);font-weight:700;cursor:pointer}
-.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.btn:focus-visible,.steps button:focus-visible,.chip:focus-visible{outline:3px solid var(--s2);outline-offset:2px}
-
-/* stage layout */
-.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
-.art{position:sticky;top:72px}
-.art .frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface);cursor:zoom-in;position:relative}
-.art .frame img{max-height:calc(100vh - 170px);width:100%;object-fit:contain;background:var(--surface-2)}
-.art .hint{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:3px 10px;border-radius:999px}
-.art .cap{font-size:13px;color:var(--ink-2);margin-top:8px}
-.stage-head{border-left:5px solid var(--c);padding-left:14px;margin-bottom:16px}
-.stage-head .k{color:var(--c);font-weight:700;font-size:14px}
-.stage-head h2{font-size:30px;margin:2px 0 4px}
-.stage-head p{margin:0;color:var(--ink-2)}
-.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
-.box h3{font-size:18px;margin-bottom:8px}
-.qs{margin:0;padding-left:20px;color:var(--ink-2)}
-.qs li{margin:2px 0}
-.mission{list-style:none;padding:0;margin:0}
-.mission li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
-.mission li:last-child{border-bottom:0}
-.mission input{margin-top:6px;accent-color:var(--c);width:18px;height:18px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
-.chips .lab{font-size:13px;color:var(--ink-2);width:100%;margin-top:6px}
-.chip{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:3px 11px;font-size:14px;cursor:pointer}
-.chip:hover{border-color:var(--c);color:var(--c)}
-label.fl{display:block;font-weight:700;margin:10px 0 6px}
-label.fl small{font-weight:400;color:var(--ink-2)}
-textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;line-height:1.7}
-textarea:focus{outline:2px solid var(--c);border-color:transparent}
-.count{font-size:12px;color:var(--ink-2);text-align:right;margin-top:2px}
-details.info{background:var(--c-soft);border-radius:10px;padding:10px 14px;margin-top:10px}
-details.info summary{cursor:pointer;font-weight:700;color:var(--c)}
-details.info dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0 0;font-size:15px}
-details.info dt{color:var(--ink-2)}
-details.info dd{margin:0}
-.nav-row{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
-.tip{font-size:14px;color:var(--ink-2);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:8px}
-
-/* summary */
-.report{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
-.report .row{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
-.report .row:last-child{border-bottom:0}
-.report .tag{font-weight:700;color:var(--c)}
-.report .txt{white-space:pre-wrap}
-.report .empty{color:var(--ink-2);font-style:italic}
-.check{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0}
-.check label{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
-.toast.on{opacity:1}
-
-/* zoom */
-.zoom{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:40;display:none;overflow:auto;cursor:zoom-out}
-.zoom.on{display:block}
-.zoom img{max-width:none;width:180%;margin:0 auto}
-@media (min-width:900px){.zoom img{width:auto;height:180vh}}
-.zoom .x{position:fixed;top:12px;right:12px;background:#fff;color:#000;border:0;border-radius:999px;width:40px;height:40px;font-size:20px;cursor:pointer}
-
+header{padding:56px 0 24px}
+header .k{color:var(--ink-2);margin:0 0 6px}
+header h1{font-size:clamp(32px,6vw,52px)}
+header p.lead{color:var(--ink-2);font-size:18px;margin:12px 0 0}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin:24px 0 20px}
+.filters button{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;padding:6px 14px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.filters button:focus-visible,.card:focus-visible{outline:3px solid var(--a-감상);outline-offset:2px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;padding-bottom:56px}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;color:inherit;text-decoration:none;transition:transform .15s,box-shadow .15s}
+a.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card .thumb{aspect-ratio:16/10;background:var(--surface-2);position:relative;overflow:hidden}
+.card .thumb img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block}
+.card .thumb .ph{position:absolute;inset:0;display:grid;place-items:center;font-family:"Gowun Batang",serif;font-size:28px;color:var(--ink-2);background:repeating-linear-gradient(135deg,var(--surface-2) 0 12px,var(--surface) 12px 24px)}
+.card .body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:6px;flex:1}
+.tags{display:flex;gap:6px;flex-wrap:wrap;font-size:13px}
+.tag{padding:1px 9px;border-radius:999px;border:1px solid var(--line);color:var(--ink-2)}
+.tag.area{color:var(--c);border-color:var(--c);font-weight:700}
+.card h3{font-size:21px;margin-top:2px}
+.card p{margin:0;color:var(--ink-2);font-size:15px}
+.card .go{margin-top:auto;padding-top:8px;font-weight:700;font-size:14px;color:var(--c)}
+.card.soon{opacity:.65}
+.card.soon .go{color:var(--ink-2);font-weight:400}
+.empty{color:var(--ink-2);padding:40px 0}
 footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--ink-2);font-size:13px}
-
-@media (max-width:860px){
-  .hero,.stage,.example{grid-template-columns:1fr}
-  .four{grid-template-columns:repeat(2,1fr)}
-  .art{position:static}
-  .art .frame img{max-height:55vh}
-  .brand{display:none}
-  .steps{margin-left:0}
-  .check{grid-template-columns:1fr}
-  .report .row{grid-template-columns:1fr;gap:4px}
-}
-@media print{
-  header.top,.nav-row,.actions,.check,footer,.no-print{display:none!important}
-  section.panel{display:none!important}
-  section#p5{display:block!important;padding:0}
-  body{background:#fff;color:#000}
-  .report{border:0;padding:0}
-}
 </style>
 </head>
 <body>
-
-<header class="top">
-  <div class="wrap">
-    <div class="brand">앤더슨 비평 4단계</div>
-    <nav class="steps" aria-label="수업 단계">
-      <button data-go="0" aria-current="true"><span class="n">0</span>시작</button>
-      <button data-go="1"><span class="n">1</span>반응</button>
-      <button data-go="2"><span class="n">2</span>기술</button>
-      <button data-go="3"><span class="n">3</span>해석</button>
-      <button data-go="4"><span class="n">4</span>평가</button>
-      <button data-go="5"><span class="n">✓</span>정리</button>
-    </nav>
-  </div>
+<header class="wrap">
+  <p class="k">중학교 1학년 미술</p>
+  <h1>미술 수업실</h1>
+  <p class="lead">오늘 수업을 골라 들어가세요.</p>
 </header>
 
 <main class="wrap">
-
-<!-- 0. 시작 -->
-<section class="panel on" id="p0">
-  <div class="hero">
-    <div>
-      <p style="color:var(--ink-2);margin:0 0 6px">중학교 1학년 미술 · 감상 1차시</p>
-      <h1>그림과 대화하는<br>네 걸음</h1>
-      <p class="lead">“좋다 / 별로다”로 끝나는 감상에서 벗어나, <b>근거를 들어 작품을 이야기하는 방법</b>을 배워요.</p>
-      <div class="goal">
-        <b>학습 목표</b>
-        <ul>
-          <li>앤더슨 비평의 네 단계(반응 · 기술 · 해석 · 평가)를 설명할 수 있다.</li>
-          <li>조형 요소와 원리를 근거로 작품을 감상하고 나의 생각을 글로 쓸 수 있다.</li>
-        </ul>
-      </div>
-    </div>
-    <figure class="cover" style="margin:0">
-      <img src="images/ssireum.jpg" alt="김홍도의 씨름. 둥글게 둘러앉은 구경꾼들 가운데에서 두 남자가 씨름을 하고 있다.">
-      <figcaption>오늘 함께 볼 작품 — 김홍도, 〈씨름〉</figcaption>
-    </figure>
-  </div>
-
-  <div class="four">
-    <div class="card4" style="--c:var(--s1)"><div class="k">1단계</div><h3>반응</h3><p>처음 본 느낌, 떠오르는 생각과 기억</p></div>
-    <div class="card4" style="--c:var(--s2)"><div class="k">2단계</div><h3>기술</h3><p>보이는 것(형식)과 작품의 배경(맥락)을 조사</p></div>
-    <div class="card4" style="--c:var(--s3)"><div class="k">3단계</div><h3>해석</h3><p>모은 증거로 작품의 의미를 추측</p></div>
-    <div class="card4" style="--c:var(--s4)"><div class="k">4단계</div><h3>평가</h3><p>근거를 들어 작품의 가치를 판단</p></div>
-  </div>
-  <p class="arrow">느낌 → 관찰 → 의미 → 판단, 순서대로 올라가요. 앞 단계가 뒤 단계의 <b>근거</b>가 됩니다.</p>
-
-  <h2 style="margin-top:36px">먼저 예시를 살펴볼까요?</h2>
-  <div class="example" id="example">
-    <div>
-      <img src="images/matisse.jpg" alt="앙리 마티스의 붉은 색의 조화. 붉은 방 안에서 여인이 식탁을 차리고, 창밖으로 초록 정원이 보인다.">
-      <div class="meta">앙리 마티스, 〈붉은 색의 조화〉, 1908, 캔버스에 유채, 180×220cm</div>
-    </div>
-    <div>
-      <div class="ex-tabs" role="tablist">
-        <button class="on" data-ex="0" style="--c:var(--s1)">반응</button>
-        <button data-ex="1" style="--c:var(--s2)">기술 · 형식</button>
-        <button data-ex="2" style="--c:var(--s2)">기술 · 맥락</button>
-        <button data-ex="3" style="--c:var(--s3)">해석</button>
-        <button data-ex="4" style="--c:var(--s4)">평가</button>
-      </div>
-      <div class="ex-body" id="exBody" aria-live="polite"></div>
-    </div>
-  </div>
-
-  <div class="cta"><button class="btn" data-go="1">이제 〈씨름〉을 감상해 봐요 →</button></div>
-</section>
-
-<!-- 1. 반응 -->
-<section class="panel" id="p1" style="--c:var(--s1);--c-soft:var(--s1-soft)">
-  <div class="stage">
-    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉 · 작품을 크게 보고 구석구석 살펴보세요.</div></div>
-    <div>
-      <div class="stage-head"><div class="k">1단계</div><h2>반응</h2><p>정답은 없어요. 나의 <b>솔직한 첫 느낌</b>을 적어요.</p></div>
-      <div class="box">
-        <h3>생각해 볼 질문</h3>
-        <ol class="qs">
-          <li>이 작품을 처음 보았을 때 어떤 느낌이 드나요?</li>
-          <li>작품에서 무엇이 보이나요? 무엇을 생각하게 하나요?</li>
-          <li>이 작품을 보니 떠오르는 경험이나 기억이 있나요?</li>
-        </ol>
-        <div class="chips" data-for="r1">
-          <span class="lab">느낌 단어를 눌러 보세요</span>
-          <button class="chip">흥겹다</button><button class="chip">시끌벅적하다</button><button class="chip">긴장된다</button><button class="chip">정겹다</button><button class="chip">재미있다</button><button class="chip">소박하다</button><button class="chip">조용하다</button><button class="chip">생생하다</button>
-        </div>
-        <label class="fl" for="r1">나의 반응 <small>(4줄 이상, 왜 그렇게 느꼈는지도 함께)</small></label>
-        <textarea id="r1" data-save placeholder="예) 처음 보았을 때 구경꾼들이 빙 둘러앉아 있어서 운동회 날처럼 시끌벅적한 느낌이 들었다. 왜냐하면…"></textarea>
-        <div class="count" data-count="r1"></div>
-      </div>
-      <div class="nav-row"><button class="btn ghost" data-go="0">← 시작</button><button class="btn" data-go="2">다음: 기술 →</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- 2. 기술 -->
-<section class="panel" id="p2" style="--c:var(--s2);--c-soft:var(--s2-soft)">
-  <div class="stage">
-    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉 · 크게 보고 미션을 찾아보세요.</div></div>
-    <div>
-      <div class="stage-head"><div class="k">2단계</div><h2>기술</h2><p>느낌은 잠시 내려놓고, 탐정처럼 <b>보이는 것</b>과 <b>작품의 배경</b>을 모아요.</p></div>
-
-      <div class="box">
-        <h3>👀 관찰 미션</h3>
-        <ul class="mission">
-          <li><input type="checkbox" id="m1" data-save><label for="m1">구경꾼은 모두 몇 명일까요? 어떤 모양으로 앉아 있나요?</label></li>
-          <li><input type="checkbox" id="m2" data-save><label for="m2">씨름과 상관없이 혼자 딴 곳을 보는 사람을 찾아보세요.</label></li>
-          <li><input type="checkbox" id="m3" data-save><label for="m3">구경꾼들의 표정과 몸짓을 보고, 누가 이길 것 같은지 추리해 보세요.</label></li>
-          <li><input type="checkbox" id="m4" data-save><label for="m4">배경은 어떻게 그려져 있나요? 왜 그렇게 그렸을까요?</label></li>
-          <li><input type="checkbox" id="m5" data-save><label for="m5">그림 속 사람들의 손을 하나하나 자세히 보세요. 어딘가 이상한 손이 있나요?</label></li>
-        </ul>
-      </div>
-
-      <div class="box">
-        <h3>형식적 요소 <small style="font-weight:400;color:var(--ink-2)">— 무엇이, 어떻게 그려졌나?</small></h3>
-        <div class="chips" data-for="d1">
-          <span class="lab">조형 요소</span>
-          <button class="chip">점</button><button class="chip">선</button><button class="chip">면</button><button class="chip">색</button><button class="chip">형</button><button class="chip">명암</button><button class="chip">질감</button><button class="chip">공간감</button><button class="chip">양감</button>
-          <span class="lab">조형 원리</span>
-          <button class="chip">비례</button><button class="chip">강조</button><button class="chip">대비</button><button class="chip">율동</button><button class="chip">동세</button><button class="chip">반복</button><button class="chip">변화</button><button class="chip">통일</button><button class="chip">조화</button><button class="chip">균형</button>
-          <span class="lab">구도</span>
-          <button class="chip">원형 구도</button><button class="chip">삼각형 구도</button><button class="chip">대각선 구도</button><button class="chip">수평선 구도</button>
-        </div>
-        <label class="fl" for="d1">형식적 요소 <small>(조형 요소 3가지, 조형 원리 2가지 이상)</small></label>
-        <textarea id="d1" data-save placeholder="예) 구경꾼들이 둥글게 둘러앉은 원형 구도로, 시선이 가운데 씨름꾼에게 모인다(강조). 옷은 연한 색과 먹선으로…"></textarea>
-        <div class="count" data-count="d1"></div>
-      </div>
-
-      <div class="box">
-        <h3>맥락적 요소 <small style="font-weight:400;color:var(--ink-2)">— 누가, 언제, 왜 그렸나?</small></h3>
-        <ol class="qs">
-          <li>작가는 누구이고, 어떤 그림을 주로 그렸나요?</li>
-          <li>언제, 어떤 시대에 만들어졌나요? 그 시대 사람들의 생활은 어땠나요?</li>
-          <li>이런 그림을 무엇이라고 부르나요? (양식)</li>
-        </ol>
-        <details class="info">
-          <summary>작품 정보 카드 열기</summary>
-          <dl>
-            <dt>작가</dt><dd>김홍도 (1745~?) · 호는 단원(檀園)</dd>
-            <dt>제작</dt><dd>조선 후기, 18세기 후반</dd>
-            <dt>재료</dt><dd>종이에 먹과 옅은 채색 (수묵담채)</dd>
-            <dt>크기</dt><dd>약 27 × 23 cm</dd>
-            <dt>소장</dt><dd>국립중앙박물관 · 『단원 풍속도첩』 중 한 점 (보물)</dd>
-            <dt>양식</dt><dd>풍속화 — 서민들의 평범한 일상을 그린 그림</dd>
-          </dl>
-        </details>
-        <label class="fl" for="d2">맥락적 요소 <small>(4줄 이상, 정확한 정보로)</small></label>
-        <textarea id="d2" data-save placeholder="예) 이 작품은 조선 후기 화가 김홍도의 풍속화로…"></textarea>
-        <div class="count" data-count="d2"></div>
-        <div class="tip">💡 인터넷 문장을 그대로 옮기지 말고, 찾은 내용을 <b>내 말로</b> 바꿔 써요.</div>
-      </div>
-      <div class="nav-row"><button class="btn ghost" data-go="1">← 반응</button><button class="btn" data-go="3">다음: 해석 →</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- 3. 해석 -->
-<section class="panel" id="p3" style="--c:var(--s3);--c-soft:var(--s3-soft)">
-  <div class="stage">
-    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉</div></div>
-    <div>
-      <div class="stage-head"><div class="k">3단계</div><h2>해석</h2><p>2단계에서 모은 <b>증거</b>를 바탕으로 작품의 의미를 추측해요.</p></div>
-      <div class="box">
-        <h3>생각해 볼 질문</h3>
-        <ol class="qs">
-          <li>작가는 이 그림으로 무엇을 보여 주고 싶었을까요?</li>
-          <li>내가 그림 속 한 사람이라면 무슨 생각을 하고 있을까요? (구경꾼, 엿장수, 씨름꾼…)</li>
-          <li>내가 작가라면 이 작품에 어떤 제목을 붙이고 싶나요? 왜 그런가요?</li>
-        </ol>
-        <label class="fl" for="i1">나의 해석 <small>(3줄 이상, 앞 단계의 근거와 연결)</small></label>
-        <textarea id="i1" data-save placeholder="예) 배경을 생략하고 사람들만 그린 것으로 보아, 작가는 씨름 자체보다 그것을 즐기는 사람들의 모습을 보여 주고 싶었던 것 같다. 왜냐하면…"></textarea>
-        <div class="count" data-count="i1"></div>
-        <label class="fl" for="i2">내가 붙인 새 제목</label>
-        <textarea id="i2" data-save style="min-height:60px" placeholder="예) 〈오늘의 승자는?〉"></textarea>
-        <div class="tip">💡 “~인 것 같다”로 끝내지 말고, <b>“왜냐하면 그림에서 ~가 보이기 때문이다”</b>로 근거를 붙여 보세요.</div>
-      </div>
-      <div class="nav-row"><button class="btn ghost" data-go="2">← 기술</button><button class="btn" data-go="4">다음: 평가 →</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- 4. 평가 -->
-<section class="panel" id="p4" style="--c:var(--s4);--c-soft:var(--s4-soft)">
-  <div class="stage">
-    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉</div></div>
-    <div>
-      <div class="stage-head"><div class="k">4단계</div><h2>평가</h2><p>이 작품은 감상할 가치가 있을까요? <b>나의 생각</b>이 잘 드러나게 판단해요.</p></div>
-      <div class="box">
-        <label class="fl" for="e1">개인적 경험 <small>— 감상하면서 처음 느낌이 어떻게 바뀌었나요? 이 작품을 갖고 싶나요?</small></label>
-        <textarea id="e1" data-save style="min-height:90px"></textarea>
-        <label class="fl" for="e2">미학적 판단 <small>— 형태, 구도, 표현이 잘 되었나요? 아름답거나 보는 즐거움이 있나요?</small></label>
-        <textarea id="e2" data-save style="min-height:90px"></textarea>
-        <label class="fl" for="e3">맥락적 판단 <small>— 조선 후기 사람들의 모습이 잘 드러나나요? 그 점이 왜 가치 있나요?</small></label>
-        <textarea id="e3" data-save style="min-height:90px"></textarea>
-        <label class="fl" for="e4">최종 판단 <small>— 그래서, 이 작품은 감상할 가치가 있나요? 왜 그런가요?</small></label>
-        <textarea id="e4" data-save style="min-height:90px"></textarea>
-        <div class="count" data-count="e4"></div>
-      </div>
-      <div class="nav-row"><button class="btn ghost" data-go="3">← 해석</button><button class="btn" data-go="5">정리하기 ✓</button></div>
-    </div>
-  </div>
-</section>
-
-<!-- 5. 정리 -->
-<section class="panel" id="p5">
-  <h2 style="font-size:30px">나의 감상문</h2>
-  <p style="color:var(--ink-2);margin-top:-4px" class="no-print">각 단계에서 쓴 글이 모였어요. 스스로 점검한 뒤 복사하거나 인쇄해 제출하세요.</p>
-
-  <h3 class="no-print" style="margin-top:20px">스스로 점검하기</h3>
-  <div class="check">
-    <label><input type="checkbox" data-save id="c1"> 반응: 느낌과 함께 <b>이유</b>를 썼다.</label>
-    <label><input type="checkbox" data-save id="c2"> 기술: 조형 요소 3가지, 원리 2가지 이상을 썼다.</label>
-    <label><input type="checkbox" data-save id="c3"> 해석: 앞 단계의 <b>근거</b>와 연결했다.</label>
-    <label><input type="checkbox" data-save id="c4"> 평가: “좋다/싫다”가 아니라 <b>가치</b>를 판단했다.</label>
-    <label><input type="checkbox" data-save id="c5"> 인터넷 문장을 그대로 옮기지 않았다.</label>
-    <label><input type="checkbox" data-save id="c6"> 맞춤법과 띄어쓰기를 확인했다.</label>
-  </div>
-
-  <div class="report" id="report"></div>
-
-  <div class="actions">
-    <button class="btn" id="copy">📋 전체 복사</button>
-    <button class="btn ghost" id="print">🖨 인쇄</button>
-    <button class="btn ghost" id="reset">처음부터 다시 쓰기</button>
-  </div>
-</section>
+  <div class="filters" role="group" aria-label="영역별 보기" id="filters"></div>
+  <div class="grid" id="grid"></div>
 </main>
 
-<div class="zoom" id="zoom" role="dialog" aria-label="작품 크게 보기"><button class="x" aria-label="닫기">✕</button><img src="images/ssireum.jpg" alt="김홍도의 씨름 확대"></div>
-<div class="toast" id="toast"></div>
+<footer><div class="wrap">각 수업에서 쓴 글은 내 기기의 브라우저에만 저장돼요.</div></footer>
 
-<footer>
-  <div class="wrap">
-    작품 이미지: 김홍도 〈씨름〉(국립중앙박물관 소장), 앙리 마티스 〈붉은 색의 조화〉(에르미타주 미술관 소장) — 퍼블릭 도메인, Wikimedia Commons.<br>
-    쓴 글은 이 기기의 브라우저에만 저장되며 어디에도 전송되지 않아요.
-  </div>
-</footer>
-
+<script src="lessons.js"></script>
 <script>
 (function(){
-  const KEY='anderson-ssireum-v1';
-  let store={};
-  try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){store={}}
-  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}};
+  const L=window.LESSONS||[];
+  const grid=document.getElementById('grid'), fl=document.getElementById('filters');
+  const areas=['전체',...new Set(L.map(x=>x.area))];
+  const esc=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  let cur='전체';
+  try{const s=sessionStorage.getItem('art-class-filter');if(areas.includes(s))cur=s}catch(e){}
 
-  /* navigation */
-  const panels=[...document.querySelectorAll('section.panel')];
-  const navBtns=[...document.querySelectorAll('.steps button')];
-  function go(i){
-    panels.forEach((p,k)=>p.classList.toggle('on',k===i));
-    navBtns.forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false'));
-    navBtns[i].scrollIntoView({inline:'nearest',block:'nearest'});
-    if(i===5) buildReport();
-    window.scrollTo({top:0,behavior:'smooth'});
-    try{history.replaceState(null,'','#'+i)}catch(e){}
+  function render(){
+    fl.innerHTML=areas.map(a=>'<button aria-pressed="'+(a===cur)+'" data-a="'+esc(a)+'">'+esc(a)+'</button>').join('');
+    const list=L.filter(x=>cur==='전체'||x.area===cur).sort((a,b)=>(b.ready===true)-(a.ready===true));
+    grid.innerHTML=list.length?list.map(x=>{
+      const c='var(--a-'+x.area+', var(--ink))';
+      const thumb=x.thumb?'<img src="'+esc(x.thumb)+'" alt="" loading="lazy">':'<div class="ph">'+esc(x.unit)+'</div>';
+      const inner='<div class="thumb">'+thumb+'</div><div class="body">'+
+        '<div class="tags"><span class="tag area">'+esc(x.area)+'</span><span class="tag">'+esc(x.unit)+'</span><span class="tag">'+esc(x.period)+'</span></div>'+
+        '<h3>'+esc(x.title)+'</h3><p>'+esc(x.summary)+'</p>'+
+        '<div class="go">'+(x.ready?'수업 시작 →':'준비 중')+'</div></div>';
+      return x.ready
+        ? '<a class="card" style="--c:'+c+'" href="lessons/'+encodeURIComponent(x.id)+'/">'+inner+'</a>'
+        : '<div class="card soon" style="--c:'+c+'" aria-disabled="true">'+inner+'</div>';
+    }).join(''):'<p class="empty">이 영역의 수업이 아직 없어요.</p>';
   }
-  document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)});
-  const h=parseInt(location.hash.slice(1));if(h>=0&&h<=5)go(h);
-
-  /* saved inputs */
-  document.querySelectorAll('[data-save]').forEach(el=>{
-    const v=store[el.id];
-    if(el.type==='checkbox'){el.checked=!!v;el.addEventListener('change',()=>{store[el.id]=el.checked;save()})}
-    else{if(v)el.value=v;el.addEventListener('input',()=>{store[el.id]=el.value;save();count(el.id)})}
-  });
-  function count(id){const c=document.querySelector('[data-count="'+id+'"]');if(!c)return;const t=document.getElementById(id).value.trim();c.textContent=t?t.replace(/\s/g,'').length+'자':''}
-  document.querySelectorAll('[data-count]').forEach(c=>count(c.dataset.count));
-
-  /* chips insert words */
-  document.querySelectorAll('.chips').forEach(g=>{
-    g.addEventListener('click',e=>{
-      const c=e.target.closest('.chip');if(!c)return;
-      const ta=document.getElementById(g.dataset.for);
-      const s=ta.selectionStart??ta.value.length, w=c.textContent;
-      const pre=ta.value.slice(0,s), pad=(pre&&!/\s$/.test(pre))?' ':'';
-      ta.value=pre+pad+w+' '+ta.value.slice(s);
-      const pos=(pre+pad+w+' ').length;ta.focus();ta.setSelectionRange(pos,pos);
-      ta.dispatchEvent(new Event('input'));
-    });
-  });
-
-  /* example tabs (from 활동지 예시, 요약) */
-  const EX=[
-    '처음 보았을 때 <b>강렬한 빨간색</b>이 눈에 들어왔지만, 따뜻한 분위기와 아기자기한 그림체가 마음에 들었다. 한 여성이 집을 꾸미고 손님을 기다리는 장면처럼 느껴져 <b>여유롭고 행복한 느낌</b>이 들었다.',
-    '전체가 <mark>붉은색</mark>으로 칠해져 있고, 창밖의 녹색·파란색과 <mark>보색 대비</mark>를 이룬다. 창밖 꽃은 흰 <mark>점</mark>이 <mark>반복</mark>되어 있다. 양감 없이 <mark>평면적인 면</mark>으로 그렸고, 식물의 <mark>곡선</mark>이 <mark>율동</mark>감을 준다. 형태에는 뚜렷한 <mark>검은 외곽선</mark>이 있다.',
-    '프랑스 화가 <b>앙리 마티스</b>의 작품으로, 강렬한 원색과 단순한 형태, 평면적인 면을 쓰는 <b>야수파</b>의 대표작이다. 원래 배경은 녹색 → 파란색이었다가 붉은색으로 다시 칠해져 제목이 바뀌었다고 한다.',
-    '제목처럼 강렬한 원색과 보색 대비를 통해 <b>색채에 대한 마티스의 관심</b>이 드러난다. 평화로운 방 안의 여인을 그려 낙관적인 주제를 표현했다. 내가 그림 속 여인이라면 정원을 바라보며 행복할 것 같다.',
-    '처음엔 빨간색이 무섭게도 느껴졌지만, 자세히 볼수록 따뜻한 그림이라고 느꼈다. 거친 붓질과 왜곡된 형태가 서툴러 보일 수 있으나 그것이 <b>작가의 개성</b>이다. 색으로 감정을 전한 점에서 <b>감상할 가치가 충분한 작품</b>이라고 판단한다.'
-  ];
-  const exBody=document.getElementById('exBody');
-  const exBtns=[...document.querySelectorAll('[data-ex]')];
-  function showEx(i){exBtns.forEach((b,k)=>b.classList.toggle('on',k===i));exBody.innerHTML=EX[i]}
-  exBtns.forEach(b=>b.addEventListener('click',()=>showEx(+b.dataset.ex)));showEx(0);
-
-  /* zoom */
-  const zoom=document.getElementById('zoom');
-  document.querySelectorAll('[data-zoom]').forEach(f=>f.addEventListener('click',()=>{zoom.classList.add('on');zoom.scrollTo((zoom.scrollWidth-zoom.clientWidth)/2,0)}));
-  zoom.addEventListener('click',e=>{if(e.target.tagName!=='IMG'||e.target.closest('.x'))zoom.classList.remove('on')});
-  zoom.querySelector('.x').addEventListener('click',()=>zoom.classList.remove('on'));
-  document.addEventListener('keydown',e=>{if(e.key==='Escape')zoom.classList.remove('on')});
-
-  /* report */
-  const PARTS=[['반응','r1','var(--s1)'],['기술 · 형식','d1','var(--s2)'],['기술 · 맥락','d2','var(--s2)'],['해석','i1','var(--s3)'],['새 제목','i2','var(--s3)'],['개인적 경험','e1','var(--s4)'],['미학적 판단','e2','var(--s4)'],['맥락적 판단','e3','var(--s4)'],['최종 판단','e4','var(--s4)']];
-  const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
-  function buildReport(){
-    document.getElementById('report').innerHTML='<h3 style="margin-bottom:4px">김홍도 〈씨름〉 감상문</h3><p style="color:var(--ink-2);margin:0 0 8px;font-size:14px">앤더슨 비평 4단계</p>'+
-      PARTS.map(([t,id,c])=>{const v=(store[id]||'').trim();return '<div class="row" style="--c:'+c+'"><div class="tag">'+t+'</div><div class="txt'+(v?'':' empty')+'">'+(v?esc(v):'아직 쓰지 않았어요')+'</div></div>'}).join('');
-  }
-  const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
-  document.getElementById('copy').addEventListener('click',async()=>{
-    const txt='김홍도 〈씨름〉 감상문 (앤더슨 비평 4단계)\n\n'+PARTS.map(([t,id])=>'['+t+']\n'+((store[id]||'').trim()||'-')).join('\n\n');
-    try{await navigator.clipboard.writeText(txt);toast('복사했어요!')}catch(e){toast('복사하지 못했어요. 직접 선택해 복사해 주세요.')}
-  });
-  document.getElementById('print').addEventListener('click',()=>window.print());
-  document.getElementById('reset').addEventListener('click',()=>{
-    if(!confirm('쓴 내용을 모두 지울까요?'))return;
-    store={};save();
-    document.querySelectorAll('[data-save]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value=''});
-    document.querySelectorAll('[data-count]').forEach(c=>count(c.dataset.count));
-    buildReport();toast('모두 지웠어요');
-  });
+  fl.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;cur=b.dataset.a;try{sessionStorage.setItem('art-class-filter',cur)}catch(e){}render()});
+  render();
 })();
 </script>
 </body>
