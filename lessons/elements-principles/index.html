@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>미술의 언어 사전</title>
+<meta name="description" content="중학교 1학년 미술 — 조형 요소와 조형 원리 알기 (교과서 「다채로운 조형의 맛」)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ec; --surface:#fffdf9; --surface-2:#f1ebe1; --ink:#2a2420; --ink-2:#5e554d; --line:#e2d9cc;
+  --el:#2f6690; --el-soft:#deeaf3;      /* 조형 요소 */
+  --pr:#b4532f; --pr-soft:#f6e3da;      /* 조형 원리 */
+  --ok:#3f7d4e; --ok-soft:#e1efe3; --no:#b23b3b; --no-soft:#f5dede;
+  --hl:#d9a21b;
+  --radius:14px; --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 20px rgba(60,40,20,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+    --el:#7fb2dc; --el-soft:#1f2c38; --pr:#ec8a70; --pr-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --hl:#f0c24f; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+  --el:#7fb2dc; --el-soft:#1f2c38; --pr:#ec8a70; --pr-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --hl:#f0c24f; --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
+h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.3;margin:0 0 .5em}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:56px}
+.home{color:var(--ink-2);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 10px;border:1px solid var(--line);border-radius:999px}
+.home:hover{color:var(--ink);border-color:var(--ink-2)}
+.brand{font-family:"Gowun Batang",serif;font-weight:700;white-space:nowrap}
+.steps{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.steps button{border:0;background:none;padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-size:14px}
+.steps button[aria-current="true"]{background:var(--ink);color:var(--bg)}
+.steps button .n{font-weight:700;margin-right:3px}
+
+section.panel{display:none;padding:28px 0 64px}
+section.panel.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sec-head{border-left:5px solid var(--c,var(--ink));padding-left:14px;margin-bottom:20px}
+.sec-head .k{color:var(--c,var(--ink-2));font-weight:700;font-size:14px}
+.sec-head h2{font-size:30px;margin:2px 0 4px}
+.sec-head p{margin:0;color:var(--ink-2)}
+
+/* intro */
+.hero h1{font-size:clamp(30px,5.5vw,48px)}
+.hero .lead{font-size:18px;color:var(--ink-2);max-width:640px}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:18px 0}
+.goal b{display:block;font-size:13px;color:var(--ink-2);letter-spacing:.04em;margin-bottom:4px}
+.goal ul{margin:0;padding-left:20px}
+.lang{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch;margin:28px 0}
+.lang .side{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px;text-align:center}
+.lang .side .big{font-family:"Gowun Batang",serif;font-size:26px;font-weight:700}
+.lang .eq{align-self:center;font-size:22px;color:var(--ink-2)}
+.recipe{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:8px 0 24px}
+.recipe .r{border-radius:var(--radius);padding:20px;border:1px solid var(--line);background:var(--surface)}
+.recipe .r .icon{font-size:30px}
+.recipe .r h3{font-size:22px;margin:6px 0 4px;color:var(--c)}
+.recipe .r p{margin:0;color:var(--ink-2)}
+.recipe .r .tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.recipe .r .tags span{font-size:13px;padding:1px 9px;border-radius:999px;background:var(--cs);color:var(--c)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+.box h3{font-size:19px;margin-bottom:6px}
+.box .muted{color:var(--ink-2);margin:0 0 8px}
+.book{display:flex;gap:14px;align-items:center;background:var(--surface-2);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.book .pg{font-family:"Gowun Batang",serif;font-weight:700;font-size:20px;white-space:nowrap;border:2px solid var(--ink-2);border-radius:8px;padding:4px 10px}
+textarea{width:100%;min-height:96px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus{outline:2px solid var(--c,var(--el));border-color:transparent}
+label.fl{display:block;font-weight:700;margin:12px 0 6px}
+label.fl small{font-weight:400;color:var(--ink-2)}
+
+/* cards */
+.progress{display:flex;align-items:center;gap:10px;margin:-6px 0 16px;color:var(--ink-2);font-size:14px}
+.progress .bar{flex:1;max-width:240px;height:8px;background:var(--surface-2);border-radius:99px;overflow:hidden}
+.progress .bar i{display:block;height:100%;background:var(--c);width:0;transition:width .3s}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px}
+.card{position:relative;border:1px solid var(--line);background:var(--surface);border-radius:var(--radius);padding:12px 12px 14px;cursor:pointer;text-align:left;transition:transform .15s,box-shadow .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--c)}
+.card:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.card svg{width:100%;height:auto;display:block;background:var(--surface-2);border-radius:10px;color:var(--ink)}
+.card .nm{display:flex;align-items:baseline;gap:6px;margin-top:10px}
+.card .nm b{font-family:"Gowun Batang",serif;font-size:22px}
+.card .nm span{color:var(--ink-2);font-size:14px}
+.card .one{font-size:13.5px;color:var(--ink-2);margin-top:2px;line-height:1.5}
+.card .done{position:absolute;top:8px;right:8px;background:var(--ok);color:#fff;border-radius:999px;font-size:12px;padding:1px 8px;display:none}
+.card.is-done .done{display:block}
+
+/* detail dialog */
+dialog.detail{border:0;padding:0;border-radius:18px;max-width:920px;width:calc(100% - 32px);background:var(--surface);color:var(--ink);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+dialog.detail::backdrop{background:rgba(20,15,10,.55)}
+.dl{display:grid;grid-template-columns:1.05fr 1fr}
+.dl .pic{background:#111;display:flex;align-items:center;justify-content:center;min-height:300px}
+.dl .pic img{max-height:76vh;width:100%;object-fit:contain}
+.dl .txt{padding:22px 22px 18px;max-height:84vh;overflow:auto}
+.dl .kind{font-size:13px;font-weight:700;color:var(--c)}
+.dl h3{font-size:30px;margin:2px 0 8px}
+.dl h3 small{font-size:16px;color:var(--ink-2);font-weight:400}
+.dl .def{background:var(--cs);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.dl .def .src{font-size:12px;color:var(--ink-2);display:block;margin-top:4px}
+.dl .work{font-size:14px;color:var(--ink-2);margin:0 0 4px}
+.dl .look{margin:0 0 12px}
+.dl .look b{color:var(--c)}
+.dl .row{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px}
+.detail .x{position:absolute;top:10px;right:10px;width:38px;height:38px;border-radius:999px;border:0;background:rgba(255,255,255,.9);color:#000;font-size:18px;cursor:pointer;z-index:2}
+.btn{border:0;border-radius:999px;padding:10px 20px;background:var(--ink);color:var(--bg);font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.c{background:var(--c);color:#fff}
+.btn:focus-visible,.steps button:focus-visible,.opt:focus-visible,.chip:focus-visible{outline:3px solid var(--el);outline-offset:2px}
+.nav-row{display:flex;justify-content:space-between;gap:8px;margin-top:24px}
+
+/* quiz */
+.quiz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.quiz .pic{background:#111;border-radius:var(--radius);overflow:hidden;display:flex;justify-content:center}
+.quiz .pic img{max-height:62vh;object-fit:contain}
+.quiz .cap{font-size:13px;color:var(--ink-2);margin-top:8px}
+.qnum{font-size:14px;color:var(--ink-2);font-weight:700}
+.qtext{font-size:20px;font-family:"Gowun Batang",serif;font-weight:700;margin:4px 0 14px;line-height:1.45}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:12px;font-size:18px;font-weight:700;cursor:pointer;text-align:center}
+.opt:hover:not([disabled]){border-color:var(--ink-2)}
+.opt.right{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.opt.wrong{border-color:var(--no);background:var(--no-soft);color:var(--no)}
+.opt[disabled]{cursor:default}
+.fb{margin-top:14px;border-radius:12px;padding:14px;background:var(--surface-2);display:none}
+.fb.on{display:block;animation:fade .2s}
+.fb b.ok{color:var(--ok)} .fb b.no{color:var(--no)}
+.dots{display:flex;gap:6px;margin-bottom:12px}
+.dots i{width:28px;height:6px;border-radius:9px;background:var(--surface-2)}
+.dots i.cur{background:var(--ink-2)} .dots i.ok{background:var(--ok)} .dots i.no{background:var(--no)}
+.score{text-align:center;padding:30px 10px}
+.score .big{font-family:"Gowun Batang",serif;font-size:56px;font-weight:700}
+
+/* discover */
+.disc{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:22px;align-items:start}
+.disc .pic{position:sticky;top:72px}
+.disc .pic img{border-radius:var(--radius);border:1px solid var(--line);max-height:calc(100vh - 160px);object-fit:contain;background:var(--surface-2);width:100%}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 12px;font-size:14.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--c);border-color:var(--c);color:#fff}
+.tip{font-size:14px;color:var(--ink-2);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:8px}
+
+/* summary */
+.report{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.report .row{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+.report .row:last-child{border-bottom:0}
+.report .tag{font-weight:700}
+.report .val{white-space:pre-wrap}
+.report .empty{color:var(--ink-2);font-style:italic}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:60}
+.toast.on{opacity:1}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--ink-2);font-size:13px}
+
+@media (max-width:860px){
+  .brand{display:none}
+  .steps{margin-left:0}
+  .dl,.quiz,.disc,.recipe{grid-template-columns:1fr}
+  .dl .pic{min-height:0}
+  .dl .pic img{max-height:42vh}
+  .disc .pic{position:static}
+  .lang{grid-template-columns:1fr}
+  .lang .eq{transform:rotate(90deg);justify-self:center}
+  .report .row{grid-template-columns:1fr;gap:2px}
+  .opts{grid-template-columns:1fr 1fr}
+}
+@media print{
+  header.top,.nav-row,.actions,footer,.no-print{display:none!important}
+  section.panel{display:none!important}
+  section#p5{display:block!important;padding:0}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="home" href="../../" aria-label="수업 목록으로">← 목록</a>
+    <div class="brand">미술의 언어 사전</div>
+    <nav class="steps" aria-label="수업 단계">
+      <button data-go="0" aria-current="true"><span class="n">0</span>시작</button>
+      <button data-go="1"><span class="n">1</span>조형 요소</button>
+      <button data-go="2"><span class="n">2</span>조형 원리</button>
+      <button data-go="3"><span class="n">3</span>원리 탐정</button>
+      <button data-go="4"><span class="n">4</span>나의 발견</button>
+      <button data-go="5"><span class="n">✓</span>정리</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 0 시작 -->
+<section class="panel on" id="p0">
+  <div class="hero">
+    <p style="color:var(--ink-2);margin:0 0 6px">중학교 1학년 미술 · 「다채로운 조형의 맛」 · 교과서 32~35쪽</p>
+    <h1>미술의 언어 사전</h1>
+    <p class="lead">미술 작품은 어떤 ‘말’로 이야기할까요? 오늘은 미술의 단어와 문법인 <b>조형 요소</b>와 <b>조형 원리</b>를 배워요.</p>
+  </div>
+  <div class="goal">
+    <b>학습 목표</b>
+    <ul>
+      <li>조형 요소와 조형 원리의 종류와 뜻을 설명할 수 있다.</li>
+      <li>작품 속에서 조형 요소와 원리를 찾고, 그 효과를 근거를 들어 말할 수 있다.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <div class="book"><span class="pg">32쪽</span><div><b>교과서를 펴 보세요.</b> 생팔의 〈거대한 얼굴〉에서 어떤 감정이 느껴지나요? 왜 그렇게 느꼈나요?</div></div>
+    <label class="fl" for="intro">나의 생각 <small>(색, 모양, 크기 등 작품에서 보이는 것을 이유로 들어 보세요)</small></label>
+    <textarea id="intro" data-save placeholder="예) 화려한 색을 보면 기쁜 얼굴 같지만, 일그러진 모양을 보면 슬퍼 보인다. 왜냐하면…"></textarea>
+  </div>
+
+  <h2 style="margin-top:32px">미술도 언어예요</h2>
+  <div class="lang">
+    <div class="side"><div style="font-size:30px">🎵</div><div class="big">음악의 언어 = 소리</div><div style="color:var(--ink-2)">청각 예술</div></div>
+    <div class="eq">⇄</div>
+    <div class="side"><div style="font-size:30px">🎨</div><div class="big">미술의 언어 = 조형</div><div style="color:var(--ink-2)">시각 예술 · ‘형태를 만든다’</div></div>
+  </div>
+
+  <h2>요리로 생각해 볼까요?</h2>
+  <div class="recipe">
+    <div class="r" style="--c:var(--el);--cs:var(--el-soft)">
+      <div class="icon">🥕</div>
+      <h3>조형 요소 = 재료</h3>
+      <p>작품을 이루는 기본 재료예요. 재료가 모여 하나의 작품이 돼요.</p>
+      <div class="tags"><span>점</span><span>선</span><span>면</span><span>형</span><span>색</span><span>명암</span><span>양감</span><span>질감</span></div>
+    </div>
+    <div class="r" style="--c:var(--pr);--cs:var(--pr-soft)">
+      <div class="icon">🍳</div>
+      <h3>조형 원리 = 요리법</h3>
+      <p>재료를 어떻게 배치하고 섞을지 정하는 방법이에요. ‘시각 예술의 문법’이라고도 해요.</p>
+      <div class="tags"><span>변화</span><span>통일</span><span>균형</span><span>조화</span><span>비례</span><span>대칭</span><span>대비</span><span>강조</span><span>점이</span><span>리듬</span></div>
+    </div>
+  </div>
+  <p style="text-align:center;color:var(--ink-2)">같은 재료라도 요리법에 따라 전혀 다른 맛이 나듯, 같은 선과 색도 <b>어떻게 쓰느냐</b>에 따라 전혀 다른 작품이 돼요.</p>
+
+  <div class="nav-row" style="justify-content:center"><button class="btn" data-go="1">재료부터 알아봐요 →</button></div>
+</section>
+
+<!-- 1 조형 요소 -->
+<section class="panel" id="p1" style="--c:var(--el);--cs:var(--el-soft)">
+  <div class="sec-head"><div class="k">교과서 34쪽</div><h2>조형 요소 — 미술의 재료</h2><p>카드를 눌러 뜻을 읽고, 명화 속에서 그 요소를 찾아보세요.</p></div>
+  <div class="progress"><span id="elProg">0 / 8</span><div class="bar"><i id="elBar"></i></div></div>
+  <div class="cards" id="elCards"></div>
+  <div class="nav-row"><button class="btn ghost" data-go="0">← 시작</button><button class="btn" data-go="2">다음: 조형 원리 →</button></div>
+</section>
+
+<!-- 2 조형 원리 -->
+<section class="panel" id="p2" style="--c:var(--pr);--cs:var(--pr-soft)">
+  <div class="sec-head"><div class="k">교과서 35쪽</div><h2>조형 원리 — 미술의 요리법</h2><p>재료(조형 요소)를 어떻게 쓰면 이런 효과가 날까요? 카드를 눌러 확인하세요.</p></div>
+  <div class="progress"><span id="prProg">0 / 10</span><div class="bar"><i id="prBar"></i></div></div>
+  <div class="cards" id="prCards"></div>
+  <div class="tip" style="margin-top:16px">💡 교과서 35쪽: 흑백 격자무늬는 <b>통일</b>감은 있지만 <b>변화</b>가 부족해요. 몬드리안은 색의 대비와 크기가 다른 면(비례)으로 <b>조화</b>를 만들었어요. ‘조화’ 카드에서 직접 비교해 보세요.</div>
+  <div class="nav-row"><button class="btn ghost" data-go="1">← 조형 요소</button><button class="btn" data-go="3">다음: 원리 탐정 →</button></div>
+</section>
+
+<!-- 3 퀴즈 -->
+<section class="panel" id="p3" style="--c:var(--pr);--cs:var(--pr-soft)">
+  <div class="sec-head"><div class="k">확인하기</div><h2>원리 탐정</h2><p>처음 보는 작품이에요. 가장 두드러지는 조형 요소나 원리를 찾아보세요.</p></div>
+  <div id="quiz"></div>
+  <div class="nav-row"><button class="btn ghost" data-go="2">← 조형 원리</button><button class="btn" data-go="4">다음: 나의 발견 →</button></div>
+</section>
+
+<!-- 4 나의 발견 -->
+<section class="panel" id="p4" style="--c:var(--el);--cs:var(--el-soft)">
+  <div class="sec-head"><div class="k">적용하기</div><h2>나의 발견</h2><p>지난 시간에 감상한 김홍도 〈씨름〉에서 조형 요소와 원리를 찾아보세요.</p></div>
+  <div class="disc">
+    <div class="pic"><img src="../anderson-critique/images/ssireum.jpg" alt="김홍도의 씨름. 구경꾼들이 둥글게 둘러앉아 가운데 씨름하는 두 사람을 보고 있다."><div style="font-size:13px;color:var(--ink-2);margin-top:6px">김홍도, 〈씨름〉, 조선 후기, 국립중앙박물관</div></div>
+    <div>
+      <div class="box">
+        <h3>① 눈에 띄는 조형 요소 <small style="font-weight:400;color:var(--ink-2)">(2개 이상 고르기)</small></h3>
+        <div class="chips" data-pick="pickEl" style="--c:var(--el)"></div>
+        <h3 style="margin-top:14px">② 쓰인 조형 원리 <small style="font-weight:400;color:var(--ink-2)">(2개 이상 고르기)</small></h3>
+        <div class="chips" data-pick="pickPr" style="--c:var(--pr)"></div>
+        <label class="fl" for="discWhy">③ 그렇게 생각한 근거 <small>(그림의 어느 부분에서 찾았나요?)</small></label>
+        <textarea id="discWhy" data-save placeholder="예) 구경꾼들이 둥글게 둘러앉아 있어서 시선이 가운데 씨름꾼에게 모인다. 이것은 ‘강조’의 원리이다. 또…"></textarea>
+        <div class="tip">💡 “원리 이름 + 그림에서 찾은 부분 + 그래서 생기는 효과” 순서로 써 보세요.</div>
+      </div>
+      <div class="box">
+        <h3>④ 우리 주변에서 찾기</h3>
+        <p class="muted">교실, 학교, 옷, 물건, 간판… 생활 속에서 조형 원리를 하나 찾아 써 보세요.</p>
+        <textarea id="life" data-save style="min-height:80px" placeholder="예) 교실 사물함은 같은 크기의 네모가 반복되어 ‘통일’과 ‘리듬’이 느껴진다."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="3">← 원리 탐정</button><button class="btn" data-go="5">정리하기 ✓</button></div>
+</section>
+
+<!-- 5 정리 -->
+<section class="panel" id="p5">
+  <div class="sec-head no-print"><div class="k">마무리</div><h2>오늘의 정리</h2><p>마지막 질문에 답하고, 내 기록을 복사하거나 인쇄해 제출하세요.</p></div>
+  <div class="box no-print" style="--c:var(--ink)">
+    <label class="fl" for="exit" style="margin-top:0">🎫 나가기 질문: 조형 요소와 조형 원리는 어떻게 다른가요? 한두 문장으로 써 보세요.</label>
+    <textarea id="exit" data-save style="min-height:80px"></textarea>
+  </div>
+  <div class="report" id="report"></div>
+  <div class="actions">
+    <button class="btn" id="copy">📋 전체 복사</button>
+    <button class="btn ghost" id="print">🖨 인쇄</button>
+    <button class="btn ghost" id="reset">처음부터 다시 하기</button>
+  </div>
+</section>
+</main>
+
+<dialog class="detail" id="detail" aria-labelledby="dTitle">
+  <button class="x" id="dClose" aria-label="닫기">✕</button>
+  <div class="dl">
+    <div class="pic"><img id="dImg" alt=""></div>
+    <div class="txt">
+      <div class="kind" id="dKind"></div>
+      <h3 id="dTitle"></h3>
+      <div class="def"><span id="dDef"></span><span class="src" id="dSrc"></span></div>
+      <p class="work" id="dWork"></p>
+      <p class="look" id="dLook"></p>
+      <div id="dExtra"></div>
+      <div class="row">
+        <button class="btn ghost" id="dPrev">← 이전</button>
+        <button class="btn c" id="dGot">이해했어요 ✓</button>
+        <button class="btn ghost" id="dNext">다음 →</button>
+      </div>
+    </div>
+  </div>
+</dialog>
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="wrap">
+    모든 작품 이미지는 퍼블릭 도메인(Wikimedia Commons)입니다. 생팔 〈거대한 얼굴〉 등 저작권이 있는 작품은 교과서로 함께 봐요.<br>
+    쓴 글은 이 기기의 브라우저에만 저장되며 어디에도 전송되지 않아요.
+  </div>
+</footer>
+
+<script>
+(function(){
+/* ---------- 데이터 ---------- */
+const EL=[
+ {id:'dot',  nm:'점', hj:'點', one:'조형의 가장 작은 단위',
+  def:'조형의 가장 작은 요소예요. 점이 모여 선을 만들고, 선은 면을 만들어요. 점이 커지면 면처럼 느껴지기도 해요.',
+  work:'조르주 쇠라, 〈그랑드 자트 섬의 일요일 오후〉, 1884~1886',
+  look:'가까이 보면 작은 <b>색 점</b>이 수없이 찍혀 있어요. 멀리서 보면 점들이 섞여 사람과 풍경이 보여요. 이렇게 점으로 그리는 방법을 <b>점묘법</b>이라고 해요.',
+  svg:'<circle cx="18" cy="20" r="3" fill="currentColor"/><circle cx="34" cy="48" r="6" fill="currentColor"/><circle cx="58" cy="26" r="10" fill="var(--el)"/><circle cx="84" cy="54" r="4" fill="currentColor"/><circle cx="100" cy="22" r="7" fill="var(--pr)"/><circle cx="70" cy="64" r="2.5" fill="currentColor"/><circle cx="14" cy="64" r="5" fill="var(--hl)"/>'},
+ {id:'line', nm:'선', hj:'線', one:'점이 움직인 흔적',
+  def:'점이 연속으로 움직인 흔적이에요. 사물의 윤곽을 나타내고, 방향 · 감정 · 운동감을 표현할 수 있어요. 굵기, 방향, 그리는 속도를 바꾸면 느낌이 달라져요.',
+  work:'빈센트 반 고흐, 〈별이 빛나는 밤〉, 1889',
+  look:'하늘에 <b>소용돌이치는 곡선</b>이 가득해요. 반듯한 직선이었다면 어떤 느낌이었을까요? 구불거리는 선이 바람의 움직임과 화가의 들뜬 감정을 함께 보여 줘요.',
+  svg:'<path d="M8 60 Q 30 10 52 40 T 96 30" fill="none" stroke="var(--el)" stroke-width="4" stroke-linecap="round"/><path d="M10 72 L24 58 L38 72 L52 58 L66 72 L80 58 L94 72 L108 58" fill="none" stroke="currentColor" stroke-width="2"/><line x1="70" y1="10" x2="112" y2="10" stroke="currentColor" stroke-width="6" stroke-linecap="round"/>'},
+ {id:'plane',nm:'면', hj:'面', one:'선이 모여 생긴 넓이',
+  def:'선들이 모여 만들어진 넓이를 가진 부분이에요. 면을 어떻게 나누느냐에 따라 화면의 느낌이 달라져요.',
+  work:'피트 몬드리안, 〈빨강, 파랑, 노랑의 구성 II〉, 1930',
+  look:'검은 <b>수평선과 수직선</b>이 화면을 크고 작은 <b>면</b>으로 나눴어요. 가장 큰 빨간 면과 작은 노란 면을 비교해 보세요.',
+  svg:'<rect x="8" y="8" width="60" height="44" fill="#d23a2c"/><rect x="72" y="8" width="40" height="22" fill="none" stroke="currentColor" stroke-width="2"/><rect x="72" y="34" width="40" height="38" fill="var(--hl)"/><rect x="8" y="56" width="60" height="16" fill="#2c5aa0"/>'},
+ {id:'form', nm:'형', hj:'形', one:'면이 만나 생긴 모양',
+  def:'면과 면이 만나 만들어진 모양이에요. 사물의 모양, 생김새, 덩어리를 나타내요. 기하학적인 형(원, 삼각형)과 자연스러운 유기적인 형이 있어요.',
+  work:'폴 세잔, 〈사과가 있는 정물〉, 1890년대',
+  look:'세잔은 사과를 <b>둥근 형</b>으로, 탁자와 천을 단순한 <b>덩어리</b>로 보았어요. “자연을 원기둥, 구, 원뿔로 다루라”는 말을 남겼답니다.',
+  svg:'<circle cx="28" cy="42" r="18" fill="var(--pr)"/><polygon points="62,62 78,22 94,62" fill="var(--el)"/><path d="M100 30 C 118 26 118 60 104 64 C 92 68 94 34 100 30 Z" fill="var(--hl)"/>'},
+ {id:'color',nm:'색', hj:'色', one:'눈에 가장 먼저 들어오는 요소',
+  def:'빛이 만들어 내는 현상으로, 우리 눈에 가장 먼저 들어오는 조형 요소예요. 색의 3요소는 색상(빛깔), 명도(밝기), 채도(맑기)예요.',
+  work:'클로드 모네, 〈인상, 해돋이〉, 1872',
+  look:'푸른 회색 안개 속에 <b>주황색 해</b>가 떠 있어요. 해를 그린 부분은 작지만 색 때문에 가장 먼저 눈에 들어와요. 이 그림의 제목에서 ‘인상주의’라는 이름이 나왔어요.',
+  svg:'<circle cx="34" cy="40" r="22" fill="#e04a3a" opacity=".85"/><circle cx="60" cy="40" r="22" fill="#f2c230" opacity=".85"/><circle cx="86" cy="40" r="22" fill="#2f6fc0" opacity=".85"/>'},
+ {id:'light',nm:'명암', hj:'明暗', one:'밝음과 어두움의 정도',
+  def:'빛에 의해 생기는 밝음과 어두움의 정도예요. 명암으로 입체감, 실재감, 양감을 표현할 수 있어요.',
+  work:'카라바조, 〈성 마태오의 소명〉, 1599~1600',
+  look:'오른쪽 위에서 들어온 <b>한 줄기 빛</b>이 어두운 방 안의 인물들을 비춰요. 밝은 곳과 어두운 곳의 차이가 커서 연극 무대처럼 극적으로 느껴져요.',
+  svg:'<defs><linearGradient id="g-light" x1="0" x2="1"><stop offset="0" stop-color="#111"/><stop offset="1" stop-color="#f4f0e8"/></linearGradient></defs><rect x="8" y="12" width="104" height="24" fill="url(#g-light)" rx="4"/><rect x="8" y="46" width="20" height="24" fill="#1d1d1d"/><rect x="29" y="46" width="20" height="24" fill="#555"/><rect x="50" y="46" width="20" height="24" fill="#8a8a8a"/><rect x="71" y="46" width="20" height="24" fill="#bdbdbd"/><rect x="92" y="46" width="20" height="24" fill="#eee" stroke="#bbb"/>'},
+ {id:'volume',nm:'양감', hj:'量感', one:'덩어리로 느껴지는 부피와 무게',
+  def:'대상의 크기, 부피, 무게가 하나의 덩어리처럼 느껴지는 것이에요. 그림에서는 명암의 변화로 양감을 표현해요.',
+  work:'요하네스 페르메이르, 〈진주 귀걸이를 한 소녀〉, 1665년경',
+  look:'얼굴과 터번에 빛이 닿는 쪽은 밝고 반대쪽은 어두워요. 이 <b>명암의 변화</b> 덕분에 평평한 캔버스 위의 소녀가 동그랗고 입체적으로 느껴져요.',
+  svg:'<defs><radialGradient id="g-vol" cx=".35" cy=".3" r=".75"><stop offset="0" stop-color="#fff"/><stop offset=".5" stop-color="#7fa8cf"/><stop offset="1" stop-color="#1c3550"/></radialGradient></defs><ellipse cx="62" cy="70" rx="30" ry="5" fill="currentColor" opacity=".18"/><circle cx="60" cy="38" r="28" fill="url(#g-vol)"/>'},
+ {id:'texture',nm:'질감', hj:'質感', one:'표면의 느낌',
+  def:'손이나 눈으로 느끼는 물체 표면의 성질이에요. 직접 만져서 느끼는 촉각적 질감과, 눈으로 보고 느끼는 시각적 질감이 있어요.',
+  work:'알브레히트 뒤러, 〈어린 산토끼〉, 1502',
+  look:'털 한 올 한 올을 가는 붓으로 그려서 손을 대면 <b>보들보들할 것</b> 같아요. 그림이라 실제로 만질 수는 없으니 <b>시각적 질감</b>이에요.',
+  svg:'<defs><pattern id="g-tex" width="8" height="8" patternUnits="userSpaceOnUse"><path d="M0 8 L8 0 M-2 2 L2 -2 M6 10 L10 6" stroke="currentColor" stroke-width="1.2"/></pattern><pattern id="g-tex2" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.3" fill="var(--el)"/></pattern></defs><rect x="8" y="12" width="48" height="56" fill="url(#g-tex)" rx="6"/><rect x="64" y="12" width="48" height="56" fill="url(#g-tex2)" rx="6"/>'}
+];
+const PR=[
+ {id:'variety',nm:'변화',hj:'變化',one:'다르게 바꿔 활기를 줌',
+  def:'다르게 하거나 새롭게 바꾸어 활기를 불어넣는 원리예요. 단조로움을 피하고 보는 재미를 줘요.',
+  work:'바실리 칸딘스키, 〈구성 8〉, 1923',
+  look:'크고 작은 <b>원, 삼각형, 직선, 곡선</b>이 여러 색으로 흩어져 있어요. 모양과 크기와 색이 계속 달라져서 눈이 쉬지 않고 움직여요.',
+  svg:'<circle cx="24" cy="26" r="14" fill="var(--el)"/><polygon points="50,66 64,36 78,66" fill="var(--pr)"/><rect x="86" y="14" width="22" height="22" fill="var(--hl)"/><line x1="12" y1="66" x2="44" y2="50" stroke="currentColor" stroke-width="3"/><circle cx="100" cy="58" r="6" fill="none" stroke="currentColor" stroke-width="2"/>'},
+ {id:'unity',nm:'통일',hj:'統一',one:'규칙과 질서를 만듦',
+  def:'일정한 규칙이나 질서를 만드는 원리예요. 여러 요소가 서로 관련을 맺어 하나로 묶여 보이게 해요.',
+  work:'제임스 휘슬러, 〈녹턴: 파랑과 금색 — 옛 배터시 다리〉, 1872~1875년경',
+  look:'화면 전체가 <b>푸른 색조</b>로 칠해져 있어서 다리, 강, 하늘이 하나로 묶여 보여요. 차분하고 조용한 밤의 느낌이 들어요. 금색 불꽃이 살짝 <b>변화</b>를 주고 있어요.',
+  svg:'<g fill="var(--el)">'+[0,1,2,3,4].map(i=>[0,1,2].map(j=>'<circle cx="'+(16+i*22)+'" cy="'+(18+j*22)+'" r="7"/>').join('')).join('')+'</g>'},
+ {id:'balance',nm:'균형',hj:'均衡',one:'한쪽으로 기울지 않는 안정감',
+  def:'어느 한쪽으로 기울거나 치우치지 않고 시각적 안정감을 주는 원리예요. 양쪽이 똑같은 대칭 균형과, 모양은 달라도 무게가 맞는 비대칭 균형이 있어요.',
+  work:'정선, 〈인왕제색도〉, 1751',
+  look:'비 갠 뒤의 인왕산을 그렸어요. 화면 위쪽의 <b>검고 묵직한 바위산</b>과 아래쪽의 <b>하얀 안개</b>, 오른쪽 아래의 나무와 집이 서로 무게를 나눠 가져서 안정감이 느껴져요(비대칭 균형).',
+  svg:'<polygon points="60,70 54,78 66,78" fill="currentColor"/><line x1="10" y1="68" x2="110" y2="68" stroke="currentColor" stroke-width="3"/><circle cx="28" cy="50" r="17" fill="var(--pr)"/><circle cx="86" cy="58" r="9" fill="var(--el)"/><circle cx="104" cy="58" r="9" fill="var(--el)"/>'},
+ {id:'harmony',nm:'조화',hj:'調和',one:'서로 잘 어울림',
+  def:'시각적인 요소들이 서로 관계를 맺으며 잘 어울리는 것이에요. 통일된 질서 속에서 보기 좋은 변화를 만들어요. 비슷한 것끼리의 ‘유사 조화’, 다른 것끼리의 ‘대비 조화’가 있어요.',
+  work:'피트 몬드리안, 〈빨강, 파랑, 노랑의 구성 II〉, 1930',
+  look:'교과서 35쪽처럼 비교해 보세요. 똑같은 흑백 네모만 반복되면 <b>통일</b>은 있지만 지루해요. 몬드리안은 <b>색의 대비</b>와 크기가 다른 면(<b>비례</b>)으로 질서 속의 변화, 곧 <b>조화</b>를 만들었어요.',
+  extra:'<div style="display:flex;gap:10px;align-items:center;margin:0 0 12px"><svg viewBox="0 0 60 60" width="84" aria-label="흑백 격자무늬"><g>'+[0,1,2,3].map(i=>[0,1,2,3].map(j=>'<rect x="'+(i*15)+'" y="'+(j*15)+'" width="15" height="15" fill="'+((i+j)%2?'#111':'#fff')+'"/>').join('')).join('')+'</g><rect width="60" height="60" fill="none" stroke="#999"/></svg><span style="font-size:22px">→</span><img src="images/plane.jpg" alt="" style="width:84px;border-radius:4px"><span style="font-size:14px;color:var(--ink-2)">통일만 있음 → 통일 + 변화 = 조화</span></div>',
+  svg:'<circle cx="30" cy="40" r="20" fill="#2f6690"/><circle cx="56" cy="40" r="20" fill="#3f86b8" opacity=".9"/><circle cx="82" cy="40" r="20" fill="#7fb2dc" opacity=".9"/>'},
+ {id:'proportion',nm:'비례',hj:'比例',one:'부분과 전체의 크기 관계',
+  def:'부분과 전체, 부분과 부분 사이의 상대적인 크기 관계예요. 작품 속 대상의 크기, 길이, 덩어리가 조화로운 비율로 나타나요.',
+  work:'레오나르도 다빈치, 〈비트루비우스적 인간〉, 1490년경',
+  look:'두 팔을 벌린 길이와 키가 같아서 사람이 <b>정사각형</b> 안에 꼭 맞고, 배꼽을 중심으로 <b>원</b>을 그릴 수 있어요. 다빈치는 인체의 아름다운 비례를 연구했어요.',
+  svg:'<rect x="10" y="20" width="16" height="50" fill="var(--pr)"/><rect x="32" y="40" width="16" height="30" fill="var(--pr)" opacity=".75"/><rect x="54" y="52" width="16" height="18" fill="var(--pr)" opacity=".55"/><rect x="80" y="14" width="32" height="20" fill="none" stroke="currentColor" stroke-width="2"/><line x1="100" y1="14" x2="100" y2="34" stroke="currentColor" stroke-width="2"/>'},
+ {id:'symmetry',nm:'대칭',hj:'對稱',one:'축을 기준으로 마주 보는 짝',
+  def:'축을 기준으로 서로 같은 모습으로 마주 보며 짝을 이룬 상태예요. 안정감과 엄숙함, 질서를 느끼게 해요.',
+  work:'〈일월오봉도〉, 조선 시대',
+  look:'임금의 자리 뒤에 놓였던 병풍이에요. 가운데를 기준으로 <b>해와 달</b>, 산봉우리, 소나무, 물결이 <b>좌우 대칭</b>을 이뤄요. 대칭이 주는 안정감으로 임금의 권위를 나타냈어요(교과서 37쪽).',
+  svg:'<line x1="60" y1="6" x2="60" y2="74" stroke="currentColor" stroke-dasharray="3 3"/><path d="M60 40 C 40 10 14 18 22 40 C 14 62 40 70 60 40 Z" fill="var(--pr)"/><path d="M60 40 C 80 10 106 18 98 40 C 106 62 80 70 60 40 Z" fill="var(--pr)"/>'},
+ {id:'contrast',nm:'대비',hj:'對比',one:'반대되는 것을 함께 놓음',
+  def:'서로 반대되는 요소를 함께 배치하여 강한 시각적 효과를 내는 원리예요. 밝음과 어두움, 따뜻한 색과 차가운 색, 큰 것과 작은 것 등을 대비시켜요.',
+  work:'빈센트 반 고흐, 〈밤의 카페 테라스〉, 1888',
+  look:'카페의 <b>노란 불빛</b>과 <b>짙푸른 밤하늘</b>이 맞닿아 있어요. 노랑과 파랑처럼 서로 반대되는 색(보색)을 나란히 놓아 서로를 더 선명하게 보이게 했어요.',
+  svg:'<rect x="8" y="10" width="52" height="60" fill="#1d3f8a"/><rect x="60" y="10" width="52" height="60" fill="#f2c230"/><circle cx="34" cy="40" r="12" fill="#f2c230"/><circle cx="86" cy="40" r="12" fill="#1d3f8a"/>'},
+ {id:'emphasis',nm:'강조',hj:'強調',one:'한 곳에 시선을 모음',
+  def:'색, 크기, 모양, 위치 등을 다르게 하여 특정 부분에 시선이 모이게 하는 원리예요.',
+  work:'프란시스코 고야, 〈1808년 5월 3일〉, 1814',
+  look:'어두운 밤, 등불 빛을 받은 <b>흰 셔츠의 남자</b>가 두 팔을 벌리고 있어요. 밝은 색과 큰 몸짓 때문에 우리 눈이 가장 먼저 그에게 가요. 얼굴이 보이지 않는 군인들과 비교해 보세요.',
+  svg:'<g fill="currentColor" opacity=".3">'+[0,1,2,3,4].map(i=>[0,1,2].map(j=>(i===2&&j===1)?'':'<circle cx="'+(16+i*22)+'" cy="'+(18+j*22)+'" r="7"/>').join('')).join('')+'</g><circle cx="60" cy="40" r="11" fill="#d23a2c"/>'},
+ {id:'gradation',nm:'점이',hj:'漸移',one:'조금씩 단계적으로 변함',
+  def:'크기, 방향, 명암, 색 등이 일정한 질서를 지키며 조금씩 변하는 것이에요. 점점 커지거나 작아지는 흐름과 깊이감을 만들어요.',
+  work:'가쓰시카 호쿠사이, 〈개풍쾌청(붉은 후지)〉, 1830년경',
+  look:'하늘의 파란색이 위로 갈수록 <b>점점 진해지고</b>, 산의 붉은색도 아래로 내려오며 <b>조금씩</b> 바뀌어요. 색이 부드럽게 단계적으로 변해서 넓은 하늘과 큰 산이 느껴져요.',
+  svg:'<circle cx="14" cy="40" r="3" fill="var(--pr)"/><circle cx="30" cy="40" r="6" fill="var(--pr)" opacity=".8"/><circle cx="52" cy="40" r="10" fill="var(--pr)" opacity=".7"/><circle cx="82" cy="40" r="15" fill="var(--pr)" opacity=".55"/><rect x="8" y="66" width="104" height="8" rx="4" fill="var(--el)" opacity=".25"/>'},
+ {id:'rhythm',nm:'리듬',hj:'律動',one:'반복이 만드는 움직임',
+  def:'형태나 대상이 반복되거나 일정하게 이어져서 움직임(율동감)이 느껴지는 것이에요. 음악의 리듬처럼 눈이 박자를 타며 움직여요.',
+  work:'가쓰시카 호쿠사이, 〈가나가와 해변의 높은 파도 아래〉, 1831년경',
+  look:'크고 작은 <b>파도의 곡선</b>과 갈고리 같은 <b>물보라</b>가 되풀이돼요. 반복되는 모양을 따라 눈이 움직이면서 파도가 철썩이는 것처럼 느껴져요.',
+  svg:'<path d="M4 50 q 9 -20 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0" fill="none" stroke="var(--el)" stroke-width="4"/><path d="M4 66 q 9 -14 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0" fill="none" stroke="var(--el)" stroke-width="2.5" opacity=".6"/><path d="M4 30 q 9 -24 18 0 t 18 0 t 18 0 t 18 0 t 18 0 t 18 0" fill="none" stroke="var(--el)" stroke-width="5" opacity=".85"/>'}
+];
+const QUIZ=[
+ {img:'q1',cap:'구스타프 클림트, 〈키스〉, 1907~1908',q:'금빛 옷에 네모와 동그라미 무늬가 되풀이돼요. 어떤 조형 원리가 가장 두드러질까요?',opts:['리듬','대칭','점이','비례'],a:0,
+  ex:'같은 모양의 무늬가 <b>반복</b>되어 눈이 박자를 타듯 움직여요. 남자의 옷은 네모, 여자의 옷은 동그라미 무늬라서 두 사람 사이에 <b>대비</b>도 느껴져요.'},
+ {img:'q2',cap:'조르주 드 라 투르, 〈등불 앞의 막달라 마리아〉, 1640년경',q:'촛불 하나가 어둠을 밝히고 있어요. 가장 두드러진 조형 요소는 무엇일까요?',opts:['질감','명암','점','선'],a:1,
+  ex:'촛불 주변만 밝고 나머지는 깊은 어둠이에요. 강한 <b>명암</b> 덕분에 고요하고 생각에 잠긴 분위기가 만들어져요.'},
+ {img:'q3',cap:'피터르 브뤼헐, 〈눈 속의 사냥꾼〉, 1565',q:'앞쪽의 사냥꾼과 나무는 크고, 멀리 있는 사람과 집은 점점 작아져요. 어떤 조형 원리일까요?',opts:['대칭','강조','점이','통일'],a:2,
+  ex:'크기가 <b>조금씩 단계적으로</b> 작아지고 색도 점점 흐려져서 멀리까지 이어지는 깊은 공간이 느껴져요. 이것이 <b>점이</b>예요.'},
+ {img:'q4',cap:'레오나르도 다빈치, 〈최후의 만찬〉, 1495~1498',q:'가운데 예수를 중심으로 양쪽에 제자가 여섯 명씩 앉아 있어요. 어떤 조형 원리일까요?',opts:['리듬','대칭','질감','점이'],a:1,
+  ex:'가운데를 축으로 좌우가 짝을 이루는 <b>대칭</b> 구도예요. 모든 선이 예수의 머리로 모여서 <b>강조</b>의 효과도 함께 나타나요.'},
+ {img:'q5',cap:'에드바르 뭉크, 〈절규〉, 1893',q:'하늘과 물결이 구불구불 요동쳐요. 불안한 감정을 가장 크게 전하는 조형 요소는?',opts:['양감','점','선','면'],a:2,
+  ex:'하늘, 물, 인물까지 <b>구불거리는 선</b>으로 그려서 온 세상이 흔들리는 듯한 불안함이 느껴져요. 반듯한 다리의 직선과 <b>대비</b>를 이루는 것도 찾아보세요.'}
+];
+
+/* ---------- 저장 ---------- */
+const KEY='elements-principles-v1';
+let store={};
+try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){store={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}};
+store.done=store.done||{}; store.quiz=store.quiz||{}; store.pickEl=store.pickEl||[]; store.pickPr=store.pickPr||[];
+
+/* ---------- 이동 ---------- */
+const panels=[...document.querySelectorAll('section.panel')];
+const navBtns=[...document.querySelectorAll('.steps button')];
+function go(i){
+  panels.forEach((p,k)=>p.classList.toggle('on',k===i));
+  navBtns.forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false'));
+  navBtns[i].scrollIntoView({inline:'nearest',block:'nearest'});
+  if(i===5)buildReport();
+  window.scrollTo({top:0,behavior:'smooth'});
+  try{history.replaceState(null,'','#'+i)}catch(e){}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)});
+
+/* ---------- 카드 ---------- */
+function cardHTML(x){
+  return '<button class="card" data-id="'+x.id+'"><span class="done">✓</span><svg viewBox="0 0 120 80" aria-hidden="true">'+x.svg+'</svg><div class="nm"><b>'+x.nm+'</b><span>'+x.hj+'</span></div><div class="one">'+x.one+'</div></button>';
+}
+const elBox=document.getElementById('elCards'), prBox=document.getElementById('prCards');
+elBox.innerHTML=EL.map(cardHTML).join(''); prBox.innerHTML=PR.map(cardHTML).join('');
+function refreshDone(){
+  document.querySelectorAll('.card').forEach(c=>c.classList.toggle('is-done',!!store.done[c.dataset.id]));
+  const e=EL.filter(x=>store.done[x.id]).length, p=PR.filter(x=>store.done[x.id]).length;
+  document.getElementById('elProg').textContent=e+' / '+EL.length+' 이해했어요';
+  document.getElementById('prProg').textContent=p+' / '+PR.length+' 이해했어요';
+  document.getElementById('elBar').style.width=(e/EL.length*100)+'%';
+  document.getElementById('prBar').style.width=(p/PR.length*100)+'%';
+}
+
+/* ---------- 상세 보기 ---------- */
+const dlg=document.getElementById('detail');
+let curList=EL, curIdx=0;
+function openDetail(list,idx){
+  curList=list; curIdx=idx; const x=list[idx]; const isEl=list===EL;
+  dlg.style.setProperty('--c',isEl?'var(--el)':'var(--pr)');
+  dlg.style.setProperty('--cs',isEl?'var(--el-soft)':'var(--pr-soft)');
+  document.getElementById('dKind').textContent=(isEl?'조형 요소':'조형 원리')+' '+(idx+1)+' / '+list.length;
+  document.getElementById('dTitle').innerHTML=x.nm+' <small>'+x.hj+'</small>';
+  document.getElementById('dDef').textContent=x.def;
+  document.getElementById('dSrc').textContent='교과서 '+(isEl?'34':'35')+'쪽 · 지도서 참고';
+  const img=document.getElementById('dImg'); img.src='images/'+x.id+'.jpg'; img.alt=x.work;
+  if(x.id==='harmony'){img.src='images/plane.jpg'}
+  document.getElementById('dWork').textContent=x.work;
+  document.getElementById('dLook').innerHTML='🔎 '+x.look;
+  document.getElementById('dExtra').innerHTML=x.extra||'';
+  const got=document.getElementById('dGot'); got.textContent=store.done[x.id]?'이해했어요 ✓ (완료)':'이해했어요 ✓';
+  document.getElementById('dPrev').disabled=idx===0; document.getElementById('dNext').disabled=idx===list.length-1;
+  if(!dlg.open)dlg.showModal();
+  dlg.querySelector('.txt').scrollTop=0;
+}
+elBox.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openDetail(EL,EL.findIndex(x=>x.id===c.dataset.id))});
+prBox.addEventListener('click',e=>{const c=e.target.closest('.card');if(c)openDetail(PR,PR.findIndex(x=>x.id===c.dataset.id))});
+document.getElementById('dClose').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+document.getElementById('dPrev').onclick=()=>openDetail(curList,curIdx-1);
+document.getElementById('dNext').onclick=()=>openDetail(curList,curIdx+1);
+document.getElementById('dGot').onclick=()=>{
+  store.done[curList[curIdx].id]=true; save(); refreshDone();
+  if(curIdx<curList.length-1)openDetail(curList,curIdx+1);
+  else{dlg.close();toast(curList===EL?'조형 요소 카드를 모두 봤어요! 🎉':'조형 원리 카드를 모두 봤어요! 🎉')}
+};
+
+/* ---------- 퀴즈 ---------- */
+const qBox=document.getElementById('quiz');
+let qi=0;
+function renderQuiz(){
+  const dots='<div class="dots">'+QUIZ.map((q,k)=>{const r=store.quiz[k];return '<i class="'+(r==null?(k===qi?'cur':''):(r===q.a?'ok':'no'))+'"></i>'}).join('')+'</div>';
+  if(qi>=QUIZ.length){
+    const n=QUIZ.filter((q,k)=>store.quiz[k]===q.a).length;
+    qBox.innerHTML=dots+'<div class="box score"><div class="big">'+n+' / '+QUIZ.length+'</div><p>'+(n===QUIZ.length?'완벽해요! 이제 진짜 원리 탐정이에요 🕵️':n>=3?'잘했어요! 틀린 문제는 카드를 다시 살펴보세요.':'조형 요소·원리 카드를 한 번 더 보고 다시 도전해 볼까요?')+'</p><div class="actions" style="justify-content:center"><button class="btn ghost" id="qAgain">다시 풀기</button><button class="btn" data-go="4">다음: 나의 발견 →</button></div></div>';
+    document.getElementById('qAgain').onclick=()=>{store.quiz={};save();qi=0;renderQuiz()};
+    return;
+  }
+  const q=QUIZ[qi], ans=store.quiz[qi];
+  qBox.innerHTML=dots+'<div class="quiz"><div><div class="pic"><img src="images/'+q.img+'.jpg" alt="'+q.cap+'"></div><div class="cap">'+q.cap+'</div></div><div>'+
+    '<div class="qnum">문제 '+(qi+1)+' / '+QUIZ.length+'</div><div class="qtext">'+q.q+'</div>'+
+    '<div class="opts">'+q.opts.map((o,k)=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join('')+'</div>'+
+    '<div class="fb" id="fb"></div>'+
+    '<div class="nav-row" style="margin-top:14px"><button class="btn ghost" id="qPrev"'+(qi===0?' disabled':'')+'>← 이전 문제</button><button class="btn" id="qNext"'+(ans==null?' disabled':'')+'>'+(qi===QUIZ.length-1?'결과 보기':'다음 문제 →')+'</button></div></div></div>';
+  const opts=[...qBox.querySelectorAll('.opt')];
+  function show(k){
+    opts.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add('right');else if(i===k)b.classList.add('wrong')});
+    const fb=document.getElementById('fb');
+    fb.innerHTML=(k===q.a?'<b class="ok">정답이에요!</b> ':'<b class="no">아쉬워요. 정답은 ‘'+q.opts[q.a]+'’'+(((q.opts[q.a].charCodeAt(q.opts[q.a].length-1)-0xAC00)%28)?'이에요':'예요')+'.</b> ')+q.ex;
+    fb.classList.add('on'); document.getElementById('qNext').disabled=false;
+  }
+  if(ans!=null)show(ans);
+  opts.forEach(b=>b.onclick=()=>{const k=+b.dataset.k;store.quiz[qi]=k;save();show(k);renderDotsOnly()});
+  document.getElementById('qPrev').onclick=()=>{qi--;renderQuiz()};
+  document.getElementById('qNext').onclick=()=>{qi++;renderQuiz()};
+}
+function renderDotsOnly(){const d=qBox.querySelector('.dots');if(!d)return;[...d.children].forEach((i,k)=>{const r=store.quiz[k];i.className=r==null?(k===qi?'cur':''):(r===QUIZ[k].a?'ok':'no')})}
+
+/* ---------- 고르기 칩 ---------- */
+document.querySelectorAll('[data-pick]').forEach(box=>{
+  const key=box.dataset.pick, list=key==='pickEl'?EL:PR;
+  box.innerHTML=list.map(x=>'<button class="chip" aria-pressed="'+store[key].includes(x.nm)+'">'+x.nm+'</button>').join('');
+  box.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;const v=c.textContent;const on=store[key].includes(v);store[key]=on?store[key].filter(z=>z!==v):[...store[key],v];c.setAttribute('aria-pressed',String(!on));save()});
+});
+
+/* ---------- 글 저장 ---------- */
+document.querySelectorAll('[data-save]').forEach(el=>{if(store[el.id])el.value=store[el.id];el.addEventListener('input',()=>{store[el.id]=el.value;save()})});
+
+/* ---------- 정리 ---------- */
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+function rows(){
+  const n=QUIZ.filter((q,k)=>store.quiz[k]===q.a).length, tried=Object.keys(store.quiz).length;
+  return [
+    ['〈거대한 얼굴〉 첫 느낌',(store.intro||'').trim()],
+    ['카드 학습','조형 요소 '+EL.filter(x=>store.done[x.id]).length+'/'+EL.length+' · 조형 원리 '+PR.filter(x=>store.done[x.id]).length+'/'+PR.length],
+    ['원리 탐정',tried?n+' / '+QUIZ.length+' 정답':''],
+    ['〈씨름〉 조형 요소',store.pickEl.join(', ')],
+    ['〈씨름〉 조형 원리',store.pickPr.join(', ')],
+    ['찾은 근거',(store.discWhy||'').trim()],
+    ['우리 주변에서',(store.life||'').trim()],
+    ['나가기 질문',(store.exit||'').trim()]
+  ];
+}
+function buildReport(){
+  document.getElementById('report').innerHTML='<h3 style="margin-bottom:4px">미술의 언어 사전 — 나의 기록</h3><p style="color:var(--ink-2);margin:0 0 6px;font-size:14px">조형 요소와 조형 원리 (교과서 32~35쪽)</p>'+
+    rows().map(([t,v])=>'<div class="row"><div class="tag">'+t+'</div><div class="val'+(v?'':' empty')+'">'+(v?esc(v):'아직 하지 않았어요')+'</div></div>').join('');
+}
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+document.getElementById('copy').onclick=async()=>{
+  const txt='미술의 언어 사전 — 나의 기록\n\n'+rows().map(([t,v])=>'['+t+']\n'+(v||'-')).join('\n\n');
+  try{await navigator.clipboard.writeText(txt);toast('복사했어요!')}catch(e){toast('복사하지 못했어요. 직접 선택해 복사해 주세요.')}
+};
+document.getElementById('print').onclick=()=>window.print();
+document.getElementById('reset').onclick=()=>{
+  if(!confirm('기록을 모두 지울까요?'))return;
+  store={done:{},quiz:{},pickEl:[],pickPr:[]};save();
+  document.querySelectorAll('[data-save]').forEach(el=>el.value='');
+  document.querySelectorAll('[data-pick] .chip').forEach(c=>c.setAttribute('aria-pressed','false'));
+  refreshDone();qi=0;renderQuiz();buildReport();toast('모두 지웠어요');
+};
+
+refreshDone(); renderQuiz();
+const h=parseInt(location.hash.slice(1));if(h>=0&&h<=5)go(h);
+})();
+</script>
+</body>
+</html>

@@ -23,5 +23,6 @@ lessons/<수업이름>/  수업 하나 = 폴더 하나 (index.html, images/)
 | 폴더 | 수업 |
 |---|---|
 | `anderson-critique` | 앤더슨 비평 4단계로 김홍도 〈씨름〉 감상 (감상 1차시) |
+| `elements-principles` | 미술의 언어 사전 — 조형 요소·원리 카드와 원리 탐정 퀴즈 (교과서 32~35쪽, 1차시) |
 
 작품 이미지는 Wikimedia Commons의 퍼블릭 도메인 이미지입니다.

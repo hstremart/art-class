@@ -27,6 +27,16 @@ window.LESSONS = [
     ready: true
   },
   {
+    id: 'elements-principles',
+    title: '미술의 언어 사전',
+    area: '표현',
+    unit: '조형 요소와 원리',
+    period: '1차시',
+    summary: '명화 카드로 조형 요소 8가지와 조형 원리 10가지를 익히고, 원리 탐정 퀴즈로 확인해요.',
+    thumb: 'lessons/elements-principles/images/variety.jpg',
+    ready: true
+  },
+  {
     id: 'chaekgeori',
     title: '책가도 속 숨은 이야기',
     area: '감상',
