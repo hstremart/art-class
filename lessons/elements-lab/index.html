@@ -1,0 +1,858 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>조형 실험실</title>
+<meta name="description" content="중학교 1학년 미술 — 조형 요소와 원리를 직접 바꿔 보며 익히는 체험 수업 (교과서 「다채로운 조형의 맛」 34~37쪽)">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ec; --surface:#fffdf9; --surface-2:#f1ebe1; --ink:#2a2420; --ink-2:#5e554d; --line:#e2d9cc;
+  --el:#2f6690; --el-soft:#deeaf3;
+  --pr:#b4532f; --pr-soft:#f6e3da;
+  --ok:#3f7d4e; --ok-soft:#e1efe3; --no:#b23b3b; --no-soft:#f5dede;
+  --hl:#d9a21b;
+  --radius:14px; --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 20px rgba(60,40,20,.08);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+    --el:#7fb2dc; --el-soft:#1f2c38; --pr:#ec8a70; --pr-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --hl:#f0c24f; --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+  --el:#7fb2dc; --el-soft:#1f2c38; --pr:#ec8a70; --pr-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --hl:#f0c24f; --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
+h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.3;margin:0 0 .5em}
+img{max-width:100%;display:block}
+button,select{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:56px}
+.home{color:var(--ink-2);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 10px;border:1px solid var(--line);border-radius:999px}
+.home:hover{color:var(--ink);border-color:var(--ink-2)}
+.brand{font-family:"Gowun Batang",serif;font-weight:700;white-space:nowrap}
+.steps{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none;min-width:0}
+.steps::-webkit-scrollbar{display:none}
+.steps button{border:0;background:none;padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-size:14px}
+.steps button[aria-current="true"]{background:var(--ink);color:var(--bg)}
+.steps button .n{font-weight:700;margin-right:3px}
+
+section.panel{display:none;padding:28px 0 64px}
+section.panel.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.sec-head{border-left:5px solid var(--c,var(--ink));padding-left:14px;margin-bottom:20px}
+.sec-head .k{color:var(--c,var(--ink-2));font-weight:700;font-size:14px}
+.sec-head h2{font-size:30px;margin:2px 0 4px}
+.sec-head p{margin:0;color:var(--ink-2)}
+
+.hero h1{font-size:clamp(30px,5.5vw,48px)}
+.hero .lead{font-size:18px;color:var(--ink-2);max-width:660px}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin:18px 0}
+.goal b{display:block;font-size:13px;color:var(--ink-2);letter-spacing:.04em;margin-bottom:4px}
+.goal ul{margin:0;padding-left:20px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+.box h3{font-size:19px;margin-bottom:6px}
+.muted{color:var(--ink-2)}
+.book{display:flex;gap:14px;align-items:center;background:var(--surface-2);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.book .pg{font-family:"Gowun Batang",serif;font-weight:700;font-size:20px;white-space:nowrap;border:2px solid var(--ink-2);border-radius:8px;padding:4px 10px}
+textarea{width:100%;min-height:90px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus{outline:2px solid var(--c,var(--el));border-color:transparent}
+label.fl{display:block;font-weight:700;margin:12px 0 6px}
+label.fl small{font-weight:400;color:var(--ink-2)}
+.btn{border:0;border-radius:999px;padding:10px 20px;background:var(--ink);color:var(--bg);font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:6px 14px;font-size:14px}
+.btn:disabled{opacity:.45;cursor:default}
+.btn:focus-visible,.steps button:focus-visible,.chip:focus-visible,.sw:focus-visible,.slot:focus-visible,.mis:focus-visible,.opt:focus-visible{outline:3px solid var(--el);outline-offset:2px}
+.nav-row{display:flex;justify-content:space-between;gap:8px;margin-top:24px;flex-wrap:wrap}
+.tip{font-size:14.5px;color:var(--ink-2);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:4px 12px;font-size:14.5px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--c,var(--pr));border-color:var(--c,var(--pr));color:#fff}
+
+/* 0: 월리 */
+.wally{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center}
+.wally .eq{font-family:"Gowun Batang",serif;font-size:19px;font-weight:700;line-height:1.6}
+.wally .eq span{color:var(--pr)}
+.flow{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0;padding:0;list-style:none;counter-reset:f}
+.flow li{flex:1 1 150px;background:var(--surface-2);border-radius:10px;padding:10px 12px;font-size:14.5px;counter-increment:f}
+.flow li::before{content:counter(f);display:inline-grid;place-items:center;width:22px;height:22px;border-radius:99px;background:var(--ink);color:var(--bg);font-weight:700;font-size:13px;margin-right:6px}
+
+/* 1: 사과 실험실 */
+.lab>*,.propo>*,.swap>*,.sym>*,.find>*,.two>*{min-width:0}
+.lab{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+.stage{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+.row8{display:grid;grid-template-columns:repeat(8,1fr);gap:4px;background:var(--surface-2);border-radius:12px;padding:14px 8px 0;position:relative}
+.row8::after{content:"";position:absolute;left:8px;right:8px;bottom:10px;height:2px;background:var(--line)}
+.row8 .axis{position:absolute;top:6px;bottom:6px;left:50%;border-left:2px dashed var(--pr);opacity:0;transition:opacity .2s;pointer-events:none}
+.row8.show-axis .axis{opacity:.7}
+.slot{border:0;background:none;padding:0 0 10px;cursor:pointer;border-radius:8px;position:relative;z-index:1}
+.slot:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.slot svg{width:100%;height:auto;display:block;overflow:visible}
+.tools{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:14px}
+.tools .lbl{font-size:13px;color:var(--ink-2);font-weight:700;margin-right:2px}
+.sws{display:flex;gap:6px;flex-wrap:wrap}
+.sw{width:32px;height:32px;border-radius:999px;border:3px solid var(--surface);box-shadow:0 0 0 1px var(--line);cursor:pointer}
+.sw[aria-pressed="true"]{box-shadow:0 0 0 3px var(--ink)}
+.sz{border:1px solid var(--line);background:var(--surface-2);border-radius:8px;min-width:38px;height:32px;cursor:pointer;font-weight:700;font-size:13px}
+.sz[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.missions{display:grid;gap:8px}
+.mis{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;cursor:pointer}
+.mis .no{flex:none;width:28px;height:28px;border-radius:99px;display:grid;place-items:center;background:var(--surface-2);font-weight:700;font-size:14px}
+.mis b{font-family:"Gowun Batang",serif;font-size:18px}
+.mis small{display:block;color:var(--ink-2);font-size:13px;line-height:1.4}
+.mis[aria-current="true"]{border-color:var(--pr);box-shadow:0 0 0 2px var(--pr) inset}
+.mis.done .no{background:var(--ok);color:#fff}
+.mtask{border-radius:12px;padding:14px;background:var(--pr-soft);margin-bottom:12px}
+.mtask .t{font-family:"Gowun Batang",serif;font-weight:700;font-size:21px;color:var(--pr)}
+.mstat{border-radius:12px;padding:12px 14px;margin-top:12px;background:var(--surface-2);min-height:52px}
+.mstat.ok{background:var(--ok-soft)}
+.mstat .ok{color:var(--ok);font-weight:700}
+.mstat .def{display:block;margin-top:6px;font-size:14.5px}
+.mstat .also{display:block;margin-top:6px;font-size:14px;color:var(--ink-2)}
+
+/* 2: 비례 */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.pair figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.pair figure .ph{background:#111;display:flex;justify-content:center;align-items:center;aspect-ratio:1/1}
+.pair figure img{max-height:100%;width:auto;object-fit:contain}
+.pair figcaption{padding:10px 12px;font-size:13.5px;color:var(--ink-2)}
+.pair figcaption b{color:var(--ink);display:block;font-size:15px}
+.propo{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:20px;align-items:center}
+.propo svg{width:100%;max-width:300px;margin:0 auto;display:block;background:var(--surface-2);border-radius:var(--radius)}
+.rng{margin:10px 0}
+.rng label{display:flex;justify-content:space-between;font-weight:700;font-size:15px}
+.rng input{width:100%;accent-color:var(--pr)}
+.verdict{font-family:"Gowun Batang",serif;font-weight:700;font-size:20px;color:var(--pr);margin:8px 0}
+
+/* 3: 요소 바꾸기 */
+.swap{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:20px;align-items:start}
+.swap .pic{background:#111;border-radius:var(--radius);overflow:hidden}
+.swap .pic img{width:100%;transition:filter .35s}
+.cap{font-size:13px;color:var(--ink-2);margin-top:6px}
+.fbtns{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.linebox svg{width:100%;height:auto;background:#fffdf7;border-radius:12px;border:1px solid var(--line)}
+
+/* 4: 대칭 */
+.sym{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px;align-items:start}
+.canwrap{position:relative;width:100%;max-width:520px;aspect-ratio:1/1;margin:0 auto;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:#fff;touch-action:none}
+.canwrap canvas{position:absolute;inset:0;width:100%;height:100%;cursor:crosshair}
+.canwrap .gv,.canwrap .gh{position:absolute;pointer-events:none;border-color:rgba(180,83,47,.55);border-style:dashed;border-width:0}
+.canwrap .gv{top:0;bottom:0;left:50%;border-left-width:2px}
+.canwrap .gh{left:0;right:0;top:50%;border-top-width:2px;display:none}
+.canwrap.tb .gv{display:none}.canwrap.tb .gh{display:block}
+.canwrap.quad .gh{display:block}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden}
+.seg button{border:0;background:var(--surface);padding:6px 12px;cursor:pointer;font-size:14px}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.letters{display:flex;gap:10px;font-family:"Gowun Batang",serif;font-size:40px;font-weight:700;justify-content:center;margin:6px 0}
+.letters span{width:56px;height:62px;display:grid;place-items:center;background:var(--surface-2);border-radius:10px}
+.opts{display:grid;grid-template-columns:1fr;gap:6px}
+.opt{border:2px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;font-weight:700;cursor:pointer;text-align:left}
+.opt.right{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.opt.wrong{border-color:var(--no);background:var(--no-soft);color:var(--no)}
+.fb{margin-top:10px;border-radius:12px;padding:12px 14px;background:var(--surface-2);display:none}
+.fb.on{display:block;animation:fade .2s}
+
+/* 5: 명화 속 원리 */
+.wtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.wtabs button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;cursor:pointer;font-size:14.5px}
+.wtabs button[aria-current="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.wtabs button.has::after{content:" ✓";color:var(--ok);font-weight:700}
+.wtabs button[aria-current="true"].has::after{color:var(--bg)}
+.find{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:start}
+.find .pic{position:sticky;top:72px}
+.find .pic img{border-radius:var(--radius);border:1px solid var(--line);max-height:calc(100vh - 170px);object-fit:contain;background:var(--surface-2);width:100%}
+.example{display:none;border-left:4px solid var(--ok);background:var(--ok-soft);border-radius:0 12px 12px 0;padding:12px 14px;margin-top:12px}
+.example.on{display:block;animation:fade .2s}
+.example b{color:var(--ok)}
+
+/* 정리 */
+.match{display:grid;gap:8px}
+.match .m{display:grid;grid-template-columns:1fr 150px;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.match select{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:var(--bg)}
+.match .m.ok{border-color:var(--ok);background:var(--ok-soft)}
+.match .m.no{border-color:var(--no);background:var(--no-soft)}
+.ox{display:grid;gap:10px;margin-top:12px}
+.ox .q{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.ox .q .b{display:flex;gap:6px;margin-top:8px}
+.ox .q .b button{border:2px solid var(--line);background:var(--surface-2);border-radius:10px;width:56px;height:40px;font-weight:700;font-size:18px;cursor:pointer}
+.ox .q .b button.right{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.ox .q .b button.wrong{border-color:var(--no);background:var(--no-soft);color:var(--no)}
+.ox .q .ex{display:none;font-size:14.5px;color:var(--ink-2);margin-top:8px}
+.ox .q.answered .ex{display:block}
+.next{border:2px dashed var(--line);border-radius:var(--radius);padding:16px 18px;margin:18px 0}
+.report{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.report .row{display:grid;grid-template-columns:160px 1fr;gap:14px;padding:11px 0;border-bottom:1px solid var(--line)}
+.report .row:last-child{border-bottom:0}
+.report .tag{font-weight:700}
+.report .val{white-space:pre-wrap}
+.report .empty{color:var(--ink-2);font-style:italic}
+.report img.sym-out{max-width:220px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:60;max-width:calc(100% - 32px);text-align:center}
+.toast.on{opacity:1}
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--ink-2);font-size:13px}
+
+@media (max-width:860px){
+  .brand{display:none}
+  .steps{margin-left:0}
+  .lab,.propo,.swap,.sym,.find,.two{grid-template-columns:1fr}
+  .find .pic{position:static}
+  .report .row{grid-template-columns:1fr;gap:2px}
+  .match .m{grid-template-columns:1fr}
+  .wally{grid-template-columns:1fr}
+}
+@media print{
+  header.top,.nav-row,.actions,footer,.no-print{display:none!important}
+  section.panel{display:none!important}
+  section#p6{display:block!important;padding:0}
+  body{background:#fff;color:#000}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="home" href="../../" aria-label="수업 목록으로">← 목록</a>
+    <div class="brand">조형 실험실</div>
+    <nav class="steps" aria-label="수업 단계">
+      <button data-go="0" aria-current="true"><span class="n">0</span>시작</button>
+      <button data-go="1"><span class="n">1</span>사과 실험실</button>
+      <button data-go="2"><span class="n">2</span>비례</button>
+      <button data-go="3"><span class="n">3</span>요소 바꾸기</button>
+      <button data-go="4"><span class="n">4</span>대칭 거울</button>
+      <button data-go="5"><span class="n">5</span>명화 속 원리</button>
+      <button data-go="6"><span class="n">✓</span>정리</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 0 시작 -->
+<section class="panel on" id="p0">
+  <div class="hero">
+    <p class="muted" style="margin:0 0 6px">중학교 1학년 미술 · 「다채로운 조형의 맛」 · 교과서 34~37쪽 · 2~3차시</p>
+    <h1>조형 실험실</h1>
+    <p class="lead">지난 시간에 조형 요소(재료)와 조형 원리(요리법)의 이름을 배웠어요. 오늘은 직접 <b>바꾸고, 늘리고, 뒤집어 보면서</b> 원리가 작품의 느낌을 어떻게 바꾸는지 실험해요.</p>
+  </div>
+  <div class="goal">
+    <b>학습 목표</b>
+    <ul>
+      <li>조형 요소를 바꾸고 배치해 보며 조형 원리의 의미와 효과를 설명할 수 있다.</li>
+      <li>작품 속에서 조형 원리를 찾고, 그렇게 생각한 이유를 근거를 들어 말할 수 있다.</li>
+    </ul>
+  </div>
+
+  <div class="box">
+    <h3>🔍 월리를 찾으려면 무엇이 필요할까요?</h3>
+    <div class="wally">
+      <svg viewBox="0 0 120 120" width="120" aria-hidden="true">
+        <rect width="120" height="120" rx="14" fill="var(--surface-2)"/>
+        <g fill="none" stroke="currentColor" stroke-width="1" opacity=".25">
+          <circle cx="20" cy="22" r="7"/><circle cx="45" cy="18" r="7"/><circle cx="96" cy="26" r="7"/><circle cx="24" cy="92" r="7"/><circle cx="92" cy="96" r="7"/><circle cx="68" cy="100" r="7"/><circle cx="18" cy="58" r="7"/><circle cx="102" cy="62" r="7"/>
+        </g>
+        <g transform="translate(60 58)">
+          <path d="M-9 -18 h18 l-2 -8 h-14 Z" fill="#d23a2c"/><circle cx="0" cy="-28" r="4" fill="#d23a2c"/>
+          <circle cx="0" cy="-9" r="9" fill="#f3d2b3"/>
+          <circle cx="-3.5" cy="-9" r="3" fill="none" stroke="#222" stroke-width="1.3"/><circle cx="3.5" cy="-9" r="3" fill="none" stroke="#222" stroke-width="1.3"/>
+          <g><rect x="-11" y="0" width="22" height="24" rx="4" fill="#fff" stroke="#999" stroke-width=".6"/>
+          <rect x="-11" y="3" width="22" height="3.5" fill="#d23a2c"/><rect x="-11" y="10" width="22" height="3.5" fill="#d23a2c"/><rect x="-11" y="17" width="22" height="3.5" fill="#d23a2c"/></g>
+        </g>
+      </svg>
+      <div>
+        <p class="eq">월리를 찾으려면 → <span>월리의 특징</span>을 알아야 해요.<br>작품 속 조형 원리를 찾으려면 → <span>조형 원리의 특징</span>을 알아야 해요.</p>
+        <p class="muted" style="margin:0">빨간 줄무늬 옷, 둥근 안경, 방울 모자… 특징을 알면 복잡한 그림에서도 금방 찾아요. 조형 원리도 마찬가지예요!</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="box">
+    <h3>오늘의 실험 순서</h3>
+    <ol class="flow">
+      <li>사과 8개로 원리 7가지 만들기</li>
+      <li>비례를 늘였다 줄였다</li>
+      <li>색과 선을 바꾸면 느낌이?</li>
+      <li>거울처럼 대칭 그리기</li>
+      <li>명화 속 원리 찾고 이유 말하기</li>
+    </ol>
+  </div>
+  <div class="nav-row" style="justify-content:center"><button class="btn" data-go="1">실험 시작 →</button></div>
+</section>
+
+<!-- 1 사과 실험실 -->
+<section class="panel" id="p1" style="--c:var(--pr)">
+  <div class="sec-head"><div class="k">실험 1 · 교과서 35쪽</div><h2>사과 8개로 만드는 조형 원리</h2><p>미션을 고르고, 붓(색 + 크기)을 정한 뒤 사과를 눌러 바꿔 보세요. 조건을 맞추면 자동으로 알려 줘요.</p></div>
+  <div class="lab">
+    <div>
+      <div class="mtask" id="mTask"></div>
+      <div class="stage">
+        <div class="row8" id="row8"><div class="axis"></div></div>
+        <div class="tools">
+          <div><span class="lbl">색</span><div class="sws" id="sws"></div></div>
+          <div><span class="lbl">크기</span><div class="sws" id="szs"></div></div>
+        </div>
+        <div class="tools">
+          <button class="btn ghost sm" id="fillAll">이 붓으로 모두 칠하기</button>
+          <button class="btn ghost sm" id="resetRow">처음으로</button>
+        </div>
+        <div class="mstat" id="mStat" aria-live="polite"></div>
+      </div>
+    </div>
+    <div>
+      <div class="missions" id="missions"></div>
+      <p class="tip">💡 한 줄에서 원리가 <b>여러 개</b> 함께 보일 수도 있어요. 성공하면 함께 보이는 원리도 알려 줄게요.</p>
+    </div>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="0">← 시작</button><button class="btn" data-go="2">다음: 비례 →</button></div>
+</section>
+
+<!-- 2 비례 -->
+<section class="panel" id="p2" style="--c:var(--pr)">
+  <div class="sec-head"><div class="k">실험 2 · 조형 원리 ‘비례’</div><h2>얼굴과 목, 길이를 바꾸면?</h2><p>비례는 부분과 전체, 부분과 부분 사이의 상대적인 크기 관계예요.</p></div>
+  <div class="pair">
+    <figure><div class="ph"><img src="images/whistler.jpg" alt="휘슬러, 회색과 검정의 배열: 화가의 어머니의 초상" loading="lazy"></div>
+      <figcaption><b>사실적인 비례</b>휘슬러, 〈회색과 검정의 배열: 화가의 어머니의 초상〉, 1871</figcaption></figure>
+    <figure><div class="ph"><img src="images/modigliani.jpg" alt="모딜리아니, 모자를 쓴 잔 에뷔테른" loading="lazy"></div>
+      <figcaption><b>변형된 비례</b>모딜리아니, 〈모자를 쓴 잔 에뷔테른〉, 1917</figcaption></figure>
+  </div>
+  <div class="box" style="margin-top:14px">
+    <label class="fl" for="propCompare" style="margin-top:0">두 그림 속 인물의 얼굴, 목, 어깨의 비례를 비교해 보세요. 무엇이 다른가요?</label>
+    <textarea id="propCompare" data-save placeholder="예) 휘슬러의 어머니는 실제 사람과 비슷한 비례인데, 모딜리아니의 잔은 얼굴과 목이 훨씬 길다."></textarea>
+  </div>
+  <div class="box">
+    <h3>직접 늘려 보기</h3>
+    <div class="propo">
+      <svg viewBox="0 0 200 240" id="propSvg" role="img" aria-label="얼굴과 목 길이를 바꿀 수 있는 인물 그림"></svg>
+      <div>
+        <div class="rng"><label for="rFace">얼굴 길이 <span id="vFace"></span></label><input type="range" id="rFace" min="100" max="165" value="100"></div>
+        <div class="rng"><label for="rNeck">목 길이 <span id="vNeck"></span></label><input type="range" id="rNeck" min="1" max="5" step="0.1" value="1.2"></div>
+        <div class="verdict" id="propVerdict"></div>
+        <p class="muted" id="propNote" style="margin:0"></p>
+        <label class="fl" for="propFeel">비례를 바꾸니 인물의 느낌이 어떻게 달라졌나요?</label>
+        <textarea id="propFeel" data-save placeholder="예) 목이 길어지니 우아하지만 쓸쓸하고 조용한 느낌이 든다."></textarea>
+      </div>
+    </div>
+    <p class="tip">📏 다빈치의 〈비트루비우스적 인간〉은 인체의 <b>이상적인 비례</b>를 연구한 그림이에요. 화가는 이렇게 비례를 정확히 지키기도 하고, 모딜리아니처럼 일부러 <b>변형</b>해서 감정을 드러내기도 해요. 교과서 32쪽 생팔의 〈거대한 얼굴〉도 실제 얼굴과 비례가 맞지 않지요!</p>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="1">← 사과 실험실</button><button class="btn" data-go="3">다음: 요소 바꾸기 →</button></div>
+</section>
+
+<!-- 3 요소 바꾸기 -->
+<section class="panel" id="p3" style="--c:var(--el)">
+  <div class="sec-head"><div class="k">실험 3 · 교과서 34쪽 조형 요소</div><h2>조형 요소가 달라지면, 느낌도 달라질까?</h2><p>같은 그림이라도 재료(색, 선)를 바꾸면 전혀 다른 맛이 나요.</p></div>
+  <div class="swap">
+    <div>
+      <div class="pic"><img src="images/bedroom.jpg" alt="빈센트 반 고흐, 아를의 침실" id="bedImg"></div>
+      <div class="cap">빈센트 반 고흐, 〈아를의 침실〉, 1888, 반 고흐 미술관</div>
+      <div class="fbtns" id="fBtns" role="group" aria-label="색 바꾸기"></div>
+    </div>
+    <div>
+      <div class="box">
+        <h3>🎨 색 바꾸기</h3>
+        <p class="muted" style="margin:0 0 6px">고흐는 동생에게 이 방이 <b>‘완전한 휴식’</b>을 느끼게 하길 바란다고 편지를 썼어요. 버튼을 눌러 색을 바꿔 보세요. 그 느낌이 그대로 남아 있나요?</p>
+        <label class="fl" for="colorFeel">가장 느낌이 많이 달라진 버전은? 어떻게 달라졌나요?</label>
+        <textarea id="colorFeel" data-save placeholder="예) ‘차갑게’로 바꾸니 아늑한 방이 쓸쓸하고 추운 방처럼 느껴졌다."></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="box" style="margin-top:6px">
+    <h3>✏️ 선 바꾸기</h3>
+    <p class="muted" style="margin:0 0 8px">같은 방을 선만 바꿔 그려 봤어요. 선의 <b>굵기, 방향, 떨림</b>에 따라 어떤 느낌이 드나요? (교과서 34쪽: “선의 굵기와 방향, 그리는 속도를 바꿔 보세요.”)</p>
+    <div class="two">
+      <div class="linebox">
+        <svg viewBox="0 0 320 220" id="lineSvg" role="img" aria-label="선 종류에 따라 바뀌는 방 그림">
+          <defs>
+            <filter id="wob" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="9"/></filter>
+          </defs>
+          <g id="room" fill="none" stroke="#2a2420" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="70" y="20" width="180" height="110"/>
+            <path d="M70 130 L14 210 M250 130 L306 210"/>
+            <rect x="132" y="36" width="56" height="46"/><path d="M160 36 V82 M132 59 H188"/>
+            <rect x="86" y="42" width="30" height="22"/><rect x="204" y="42" width="30" height="22"/>
+            <path d="M178 158 L246 140 L298 172 L230 194 Z"/>
+            <path d="M246 140 L246 104 L298 132 L298 172"/>
+            <path d="M178 158 V172 M230 194 V208 M298 172 V188"/>
+            <path d="M36 172 L76 162 L98 176 L58 188 Z"/>
+            <path d="M36 172 L36 130 L76 120 L76 162"/>
+            <path d="M36 172 V192 M58 188 V208 M98 176 V196"/>
+          </g>
+        </svg>
+      </div>
+      <div>
+        <div class="fbtns" id="lBtns" role="group" aria-label="선 바꾸기"></div>
+        <p class="verdict" id="lineName" style="font-size:18px"></p>
+        <label class="fl" for="lineFeel">선을 바꾸니 방의 느낌이 어떻게 달라졌나요?</label>
+        <textarea id="lineFeel" data-save placeholder="예) 떨리는 선으로 바꾸니 방이 흔들리는 것 같아 불안했다."></textarea>
+      </div>
+    </div>
+    <p class="tip">🖼 리히텐슈타인은 1992년에 고흐의 〈아를의 침실〉을 <b>굵고 단순한 검은 선과 만화 같은 색</b>으로 다시 그렸어요. 선생님 화면이나 교과서 자료로 원작과 비교해 보세요.</p>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="2">← 비례</button><button class="btn" data-go="4">다음: 대칭 거울 →</button></div>
+</section>
+
+<!-- 4 대칭 -->
+<section class="panel" id="p4" style="--c:var(--pr)">
+  <div class="sec-head"><div class="k">실험 4 · 교과서 36~37쪽</div><h2>아름다운 조형의 비밀, 대칭</h2><p>대칭은 축을 기준으로 서로 같은 모습으로 마주 보며 짝을 이룬 상태예요. 한쪽에만 그려도 반대쪽이 저절로 그려져요.</p></div>
+  <div class="sym">
+    <div>
+      <div class="tools" style="margin:0 0 10px">
+        <div class="seg" id="symMode" role="group" aria-label="대칭 방식">
+          <button data-m="lr" aria-pressed="true">좌우 대칭</button><button data-m="tb" aria-pressed="false">상하 대칭</button><button data-m="quad" aria-pressed="false">네 방향</button>
+        </div>
+        <div class="sws" id="penC"></div>
+        <div class="sws" id="penW"></div>
+      </div>
+      <div class="canwrap" id="canWrap"><canvas id="cv" width="720" height="720" aria-label="대칭 그리기 판"></canvas><div class="gv"></div><div class="gh"></div></div>
+      <div class="tools" style="justify-content:center">
+        <button class="btn ghost sm" id="cvUndo">↶ 되돌리기</button>
+        <button class="btn ghost sm" id="cvClear">모두 지우기</button>
+        <button class="btn sm" id="cvSave">⬇ 그림 저장</button>
+      </div>
+      <p class="tip">🙂 사람의 얼굴은 좌우 대칭이에요. ‘좌우 대칭’으로 친구 얼굴의 <b>한쪽만</b> 그려 보세요. 다음 시간에 색지를 반으로 접어 오려 내는 <b>친구 초상화</b>(교과서 37쪽)의 연습이 돼요.</p>
+    </div>
+    <div>
+      <div class="box">
+        <h3>수행 활동 ① 알파벳 속 대칭</h3>
+        <p class="muted" style="margin:0">‘A, M, T, U, V, W, Y’는 좌우 대칭, ‘B, C, D, E, K’는 상하 대칭이에요. 그렇다면 이 글자들은?</p>
+        <div class="letters"><span>N</span><span>S</span><span>Z</span></div>
+        <div class="opts" id="abcOpts"></div>
+        <div class="fb" id="abcFb"></div>
+      </div>
+      <div class="box">
+        <h3>수행 활동 ② 우리 주변의 대칭</h3>
+        <p class="muted" style="margin:0">꽃, 나비, 타지마할, 〈일월오봉도〉… 대칭은 예측 가능한 질서로 <b>안정감</b>을 줘요. 우리 주변에서 대칭을 이루는 것을 찾아 써 보세요.</p>
+        <textarea id="symLife" data-save placeholder="예) 학교 정문, 내 실내화 한 켤레, 태극기의 건곤감리는…"></textarea>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="3">← 요소 바꾸기</button><button class="btn" data-go="5">다음: 명화 속 원리 →</button></div>
+</section>
+
+<!-- 5 명화 속 원리 -->
+<section class="panel" id="p5" style="--c:var(--pr)">
+  <div class="sec-head"><div class="k">적용하기</div><h2>명화 속 조형 원리를 찾아라!</h2><p>정답은 하나가 아니에요. 대신 <b>왜 그렇게 생각했는지 이유</b>를 꼭 들어서 설명해야 해요.</p></div>
+  <div class="wtabs" id="wTabs" role="tablist"></div>
+  <div class="find">
+    <div class="pic"><img id="wImg" alt=""><div class="cap" id="wCap"></div></div>
+    <div>
+      <div class="box">
+        <p style="font-family:'Gowun Batang',serif;font-weight:700;font-size:20px;margin:0 0 8px" id="wQ"></p>
+        <label class="fl" style="margin-top:0">① 발견한 조형 원리 <small>(여러 개 골라도 돼요)</small></label>
+        <div class="chips" id="wChips"></div>
+        <label class="fl" for="wWhy">② 그렇게 생각한 이유</label>
+        <textarea id="wWhy" placeholder="원리 이름 + 그림에서 찾은 부분 + 그래서 생기는 느낌"></textarea>
+        <div class="tip">💡 예) “저는 <b>강조</b>를 발견했어요. 옷과 배경은 노란색인데 얼굴만 하얗게 칠해져 있어서, 결국 얼굴로 시선이 가요.”</div>
+        <div class="actions"><button class="btn ghost sm" id="wShow">친구들의 예시 답안 보기</button></div>
+        <div class="example" id="wEx"></div>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row"><button class="btn ghost" data-go="4">← 대칭 거울</button><button class="btn" data-go="6">정리하기 ✓</button></div>
+</section>
+
+<!-- 6 정리 -->
+<section class="panel" id="p6">
+  <div class="sec-head no-print"><div class="k">마무리</div><h2>오늘의 정리</h2><p>형성평가로 확인하고, 내 기록을 복사하거나 인쇄해 제출하세요.</p></div>
+  <div class="box no-print">
+    <h3>형성평가 ① 원리와 설명 짝짓기</h3>
+    <div class="match" id="match"></div>
+    <div class="actions"><button class="btn sm" id="mCheck">채점하기</button><span id="mScore" class="muted" style="align-self:center"></span></div>
+  </div>
+  <div class="box no-print">
+    <h3>형성평가 ② O, X</h3>
+    <div class="ox" id="ox"></div>
+  </div>
+  <div class="box no-print">
+    <label class="fl" for="exit" style="margin-top:0">🎫 나가기 질문: 오늘 실험 중 가장 기억에 남는 조형 원리 하나를 골라, 그 원리를 쓰면 작품의 느낌이 어떻게 달라지는지 써 보세요.</label>
+    <textarea id="exit" data-save style="min-height:80px"></textarea>
+  </div>
+  <div class="next no-print">
+    <b>다음 시간 예고 ✂️</b>
+    <p style="margin:4px 0 0" class="muted">색지를 반으로 접고 친구 얼굴의 한쪽만 그려 오려 내는 <b>대칭 친구 초상화</b>를 만들어요(교과서 37쪽). 준비물: 색지, 가위, 풀, 필기도구</p>
+  </div>
+  <div class="report" id="report"></div>
+  <div class="actions">
+    <button class="btn" id="copy">📋 전체 복사</button>
+    <button class="btn ghost" id="print">🖨 인쇄</button>
+    <button class="btn ghost" id="reset">처음부터 다시 하기</button>
+  </div>
+</section>
+</main>
+<div class="toast" id="toast" role="status"></div>
+
+<footer>
+  <div class="wrap">
+    작품 이미지는 퍼블릭 도메인(Wikimedia Commons)입니다. 리히텐슈타인, 생팔 등 저작권이 있는 작품은 교과서와 선생님 화면으로 함께 봐요.<br>
+    참고: 교과서·지도서 「다채로운 조형의 맛」, 미진사 지도서 「무질서와 질서 사이」, 조안나 선생님 ‘조형요소와 원리’ 수업 자료.<br>
+    쓴 글과 그림은 이 기기의 브라우저에만 저장되며 어디에도 전송되지 않아요.
+  </div>
+</footer>
+
+<script>
+(function(){
+/* ---------- 저장 ---------- */
+const KEY='elements-lab-v1';
+let store={};
+try{store=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){store={}}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}};
+function init(){store.row=store.row||null;store.mDone=store.mDone||{};store.works=store.works||{};store.match=store.match||{};store.ox=store.ox||{};}
+init();
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>t.classList.remove('on'),2000)};
+
+/* ---------- 이동 ---------- */
+const panels=[...document.querySelectorAll('section.panel')];
+const navBtns=[...document.querySelectorAll('.steps button')];
+function go(i){
+  panels.forEach((p,k)=>p.classList.toggle('on',k===i));
+  navBtns.forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false'));
+  navBtns[i].scrollIntoView({inline:'nearest',block:'nearest'});
+  if(i===6)buildReport();
+  window.scrollTo({top:0,behavior:'smooth'});
+  try{history.replaceState(null,'','#'+i)}catch(e){}
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)});
+
+/* ---------- 글 저장 ---------- */
+document.querySelectorAll('[data-save]').forEach(el=>{if(store[el.id])el.value=store[el.id];el.addEventListener('input',()=>{store[el.id]=el.value;save()})});
+
+/* =========================================================
+   1. 사과 실험실
+   ========================================================= */
+const COLORS=[
+  {id:'r',nm:'빨강',v:'#d8392b'},{id:'o',nm:'주황',v:'#ee8a1f'},{id:'y',nm:'노랑',v:'#f2c230'},
+  {id:'g',nm:'초록',v:'#3f9a45'},{id:'b',nm:'파랑',v:'#2f6fc0'},{id:'p',nm:'보라',v:'#7d4bb3'}
+];
+const COMP={r:'g',g:'r',o:'b',b:'o',y:'p',p:'y'};
+const SIZES=[{id:1,nm:'S',k:.55},{id:2,nm:'M',k:.72},{id:3,nm:'L',k:.87},{id:4,nm:'XL',k:1}];
+const N=8;
+const START=[['r',2],['r',2],['r',3],['r',2],['r',2],['r',1],['r',2],['r',2]];
+const fresh=()=>START.map(([c,s])=>({c,s}));
+let row=Array.isArray(store.row)&&store.row.length===N?store.row:fresh();
+let brush={c:'b',s:2};
+const same=(a,b)=>a.c===b.c&&a.s===b.s;
+const allSame=a=>a.every(x=>same(x,a[0]));
+const nColors=a=>new Set(a.map(x=>x.c)).size, nSizes=a=>new Set(a.map(x=>x.s)).size;
+
+const CHECK={
+  unity:a=>allSame(a),
+  emphasis:a=>{for(let i=0;i<N;i++){const rest=a.filter((_,k)=>k!==i);if(allSame(rest)&&!same(a[i],rest[0]))return true}return false},
+  variety:a=>nColors(a)>=3&&nSizes(a)>=2,
+  rhythm:a=>{if(allSame(a))return false;for(const p of [2,3,4]){let ok=true;for(let i=0;i+p<N;i++)if(!same(a[i],a[i+p])){ok=false;break}if(ok)return true}return false},
+  gradation:a=>{if(nSizes(a)<3)return false;let up=true,dn=true;for(let i=1;i<N;i++){if(a[i].s<a[i-1].s)up=false;if(a[i].s>a[i-1].s)dn=false}return up||dn},
+  symmetry:a=>!allSame(a)&&a.every((x,i)=>same(x,a[N-1-i])),
+  contrast:a=>{const cs=[...new Set(a.map(x=>x.c))];if(cs.length!==2||COMP[cs[0]]!==cs[1])return false;return cs.every(c=>a.filter(x=>x.c===c).length>=2)}
+};
+const MISSIONS=[
+  {id:'unity',nm:'통일',task:'사과 8개를 모두 <b>같은 색, 같은 크기</b>로 만들어 보세요.',
+   hint:'‘이 붓으로 모두 칠하기’를 써 봐요.',
+   def:'일정한 규칙이나 질서를 만드는 원리예요.',
+   feel:'정돈되고 차분해 보이죠? 하지만 계속 보면 조금 지루하기도 해요.'},
+  {id:'emphasis',nm:'강조',task:'똑같은 사과들 사이에서 <b>딱 한 개만</b> 색이나 크기를 다르게 바꿔 보세요.',
+   hint:'먼저 모두 같게 만든 뒤, 하나만 바꿔요.',
+   def:'색, 크기, 모양, 위치 등을 다르게 하여 특정 부분에 시선이 모이게 하는 원리예요.',
+   feel:'눈이 저절로 그 사과로 가죠? 강조는 지루함을 깨고 시선을 한곳에 모아요.'},
+  {id:'variety',nm:'변화',task:'<b>3가지 이상의 색</b>과 <b>2가지 이상의 크기</b>를 섞어 줄을 다양하게 만들어 보세요.',
+   hint:'색과 크기를 이것저것 바꿔 봐요.',
+   def:'다르게 하거나 새롭게 바꾸어 활기를 불어넣는 원리예요.',
+   feel:'활기차 보이지만, 너무 마구 바꾸면 어지러워요. 통일 속에 변화가 잘 어울릴 때 <b>조화</b>가 생겨요.'},
+  {id:'rhythm',nm:'리듬',task:'두세 가지 사과를 <b>규칙적으로 반복</b>해 보세요. 예) 빨강–노랑–빨강–노랑…',
+   hint:'2개나 3개, 4개 단위로 똑같은 순서가 되풀이되게 해요.',
+   def:'형태나 대상이 반복되거나 일정하게 이어져서 움직임(율동감)이 느껴지는 원리예요.',
+   feel:'눈이 박자를 타듯 통통 움직이죠? 음악의 리듬처럼요.'},
+  {id:'gradation',nm:'점이',task:'한쪽에서 다른 쪽으로 갈수록 사과가 <b>점점 커지거나 작아지게</b> 만들어 보세요. (크기 3가지 이상)',
+   hint:'S → M → L → XL 순서로, 거꾸로 작아지는 사과가 없게!',
+   def:'크기, 방향, 명암, 색 등이 일정한 질서를 지키며 조금씩 변하는 원리예요.',
+   feel:'사과들이 다가오거나 멀어지는 것 같은 흐름과 깊이가 느껴져요.'},
+  {id:'symmetry',nm:'대칭',task:'가운데 점선을 기준으로 <b>왼쪽과 오른쪽이 거울처럼 같게</b> 만들어 보세요.',
+   hint:'1번↔8번, 2번↔7번, 3번↔6번, 4번↔5번이 짝이에요.',
+   def:'축을 기준으로 서로 같은 모습으로 마주 보며 짝을 이룬 상태예요.',
+   feel:'안정감과 질서가 느껴져요. 대칭은 균형과 통일의 원리도 함께 가지고 있어요.'},
+  {id:'contrast',nm:'대비',task:'서로 반대되는 색(보색) <b>두 가지만</b> 써서 줄을 만들어 보세요. 각 색을 2개 이상 써요.',
+   hint:'보색 짝: 빨강↔초록, 주황↔파랑, 노랑↔보라',
+   def:'서로 반대되는 요소를 함께 배치하여 강한 시각적 효과를 내는 원리예요.',
+   feel:'두 색이 서로를 더 선명하게 만들어요. 고흐의 〈밤의 카페 테라스〉의 노랑과 파랑처럼요.'}
+];
+let cur=MISSIONS.findIndex(m=>!store.mDone[m.id]); if(cur<0)cur=0;
+
+function appleSVG(x,i){
+  const col=COLORS.find(c=>c.id===x.c).v, k=SIZES.find(s=>s.id===x.s).k;
+  return '<svg viewBox="0 0 100 110" aria-hidden="true"><g transform="translate(50 100) scale('+k+') translate(-50 -100)">'+
+    '<path d="M50 34 C 30 20 6 32 10 60 C 13 86 34 102 50 94 C 66 102 87 86 90 60 C 94 32 70 20 50 34 Z" fill="'+col+'"/>'+
+    '<path d="M28 46 C 22 54 22 64 26 70" stroke="#fff" stroke-opacity=".45" stroke-width="5" fill="none" stroke-linecap="round"/>'+
+    '<path d="M50 34 Q 51 20 58 12" stroke="#5a3a1e" stroke-width="4" fill="none" stroke-linecap="round"/>'+
+    '<path d="M56 20 C 66 10 80 14 82 18 C 74 26 62 26 56 20 Z" fill="#4f9a3a"/></g></svg>';
+}
+const rowEl=document.getElementById('row8');
+function renderRow(){
+  rowEl.innerHTML='<div class="axis"></div>'+row.map((x,i)=>'<button class="slot" data-i="'+i+'" aria-label="'+(i+1)+'번 사과: '+COLORS.find(c=>c.id===x.c).nm+' '+SIZES.find(s=>s.id===x.s).nm+'">'+appleSVG(x,i)+'</button>').join('');
+  rowEl.classList.toggle('show-axis',MISSIONS[cur].id==='symmetry');
+}
+rowEl.addEventListener('click',e=>{const s=e.target.closest('.slot');if(!s)return;row[+s.dataset.i]={c:brush.c,s:brush.s};changed()});
+const sws=document.getElementById('sws'), szs=document.getElementById('szs');
+function renderTools(){
+  sws.innerHTML=COLORS.map(c=>'<button class="sw" style="background:'+c.v+'" data-c="'+c.id+'" aria-pressed="'+(brush.c===c.id)+'" aria-label="'+c.nm+'" title="'+c.nm+'"></button>').join('');
+  szs.innerHTML=SIZES.map(s=>'<button class="sz" data-s="'+s.id+'" aria-pressed="'+(brush.s===s.id)+'">'+s.nm+'</button>').join('');
+}
+sws.addEventListener('click',e=>{const b=e.target.closest('[data-c]');if(b){brush.c=b.dataset.c;renderTools()}});
+szs.addEventListener('click',e=>{const b=e.target.closest('[data-s]');if(b){brush.s=+b.dataset.s;renderTools()}});
+document.getElementById('fillAll').onclick=()=>{row=row.map(()=>({c:brush.c,s:brush.s}));changed()};
+document.getElementById('resetRow').onclick=()=>{row=fresh();changed()};
+
+const misEl=document.getElementById('missions');
+function renderMissions(){
+  misEl.innerHTML=MISSIONS.map((m,i)=>'<button class="mis'+(store.mDone[m.id]?' done':'')+'" data-m="'+i+'" aria-current="'+(i===cur)+'"><span class="no">'+(store.mDone[m.id]?'✓':i+1)+'</span><span><b>'+m.nm+'</b><small>'+m.def+'</small></span></button>').join('');
+  const m=MISSIONS[cur];
+  document.getElementById('mTask').innerHTML='<div class="t">미션 '+(cur+1)+' · '+m.nm+'</div><div>'+m.task+'</div><div class="muted" style="font-size:14px;margin-top:4px">힌트: '+m.hint+'</div>';
+}
+misEl.addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;cur=+b.dataset.m;renderMissions();renderRow();evaluate(false)});
+
+function evaluate(announce){
+  const m=MISSIONS[cur], st=document.getElementById('mStat');
+  if(CHECK[m.id](row)){
+    const also=MISSIONS.filter(x=>x.id!==m.id&&CHECK[x.id](row)).map(x=>x.nm);
+    st.className='mstat ok';
+    st.innerHTML='<span class="ok">🎉 성공! ‘'+m.nm+'’'+(((m.nm.charCodeAt(m.nm.length-1)-0xAC00)%28)?'을':'를')+' 만들었어요.</span><span class="def"><b>'+m.nm+'</b>: '+m.def+' '+m.feel+'</span>'+(also.length?'<span class="also">👀 이 줄에서는 <b>'+also.join(', ')+'</b>도 함께 보여요. 하나의 작품에서 여러 원리를 찾을 수 있어요!</span>':'')+
+      (cur<MISSIONS.length-1?'<div class="actions" style="margin-top:8px"><button class="btn sm" id="mNext">다음 미션 →</button></div>':'');
+    if(!store.mDone[m.id]){store.mDone[m.id]=true;save();renderMissions();if(announce)toast('미션 성공: '+m.nm+' ✓')}
+    const nb=document.getElementById('mNext');if(nb)nb.onclick=()=>{cur++;renderMissions();renderRow();evaluate(false)};
+  }else{
+    st.className='mstat';
+    st.innerHTML='<span class="muted">아직이에요. 미션 조건에 맞게 사과를 바꿔 보세요.</span>';
+  }
+}
+function changed(){store.row=row;save();renderRow();evaluate(true)}
+renderTools();renderRow();renderMissions();evaluate(false);
+
+/* =========================================================
+   2. 비례
+   ========================================================= */
+const rFace=document.getElementById('rFace'), rNeck=document.getElementById('rNeck'), pSvg=document.getElementById('propSvg');
+if(store.rFace)rFace.value=store.rFace; if(store.rNeck)rNeck.value=store.rNeck;
+function drawProp(){
+  const f=rFace.value/100, n=+rNeck.value;
+  const ry=30*f, rx=25/Math.pow(f,.35), neckH=13*n, shoulderY=184;
+  const cy=shoulderY-neckH-ry+6, nw=Math.max(9,13/Math.pow(f,.3));
+  const eyeY=cy-ry*0.12, ex=rx*0.42;
+  pSvg.innerHTML=
+    '<rect width="200" height="240" fill="var(--surface-2)"/>'+
+    '<path d="M18 240 C 22 200 50 '+(shoulderY-2)+' 100 '+(shoulderY-2)+' C 150 '+(shoulderY-2)+' 178 200 182 240 Z" fill="#6b5266"/>'+
+    '<rect x="'+(100-nw)+'" y="'+(cy+ry-8)+'" width="'+(nw*2)+'" height="'+(neckH+12)+'" fill="#e3b58f"/>'+
+    '<path d="M'+(100-nw)+' '+(shoulderY-2)+' Q 100 '+(shoulderY+14)+' '+(100+nw)+' '+(shoulderY-2)+'" fill="#e3b58f"/>'+
+    '<ellipse cx="100" cy="'+cy+'" rx="'+rx+'" ry="'+ry+'" fill="#efc7a1"/>'+
+    '<path d="M'+(100-rx-3)+' '+(cy-ry*0.15)+' C '+(100-rx)+' '+(cy-ry-14)+' '+(100+rx)+' '+(cy-ry-14)+' '+(100+rx+3)+' '+(cy-ry*0.15)+' C '+(100+rx*0.5)+' '+(cy-ry*0.7)+' '+(100-rx*0.5)+' '+(cy-ry*0.7)+' '+(100-rx-3)+' '+(cy-ry*0.15)+' Z" fill="#7a4a2a"/>'+
+    '<ellipse cx="'+(100-ex)+'" cy="'+eyeY+'" rx="5.5" ry="2.6" fill="#6f9ac8"/><ellipse cx="'+(100+ex)+'" cy="'+eyeY+'" rx="5.5" ry="2.6" fill="#6f9ac8"/>'+
+    '<path d="M100 '+(eyeY-2)+' L 98 '+(cy+ry*0.42)+' L 103 '+(cy+ry*0.44)+'" stroke="#8a5a3a" stroke-width="1.6" fill="none"/>'+
+    '<path d="M95 '+(cy+ry*0.62)+' Q 100 '+(cy+ry*0.68)+' 105 '+(cy+ry*0.62)+'" stroke="#b0503c" stroke-width="2.4" fill="none" stroke-linecap="round"/>';
+  const faceRatio=(ry*2)/(rx*2);
+  document.getElementById('vFace').textContent='× '+f.toFixed(2);
+  document.getElementById('vNeck').textContent='× '+(n/1.2).toFixed(1);
+  const strange=f>1.25||n>2.6;
+  document.getElementById('propVerdict').textContent=strange?'변형된 비례 ↗ 모딜리아니처럼!':'사실적인 비례에 가까워요';
+  document.getElementById('propNote').textContent=strange?'얼굴이 세로로 길쭉하고(가로:세로 = 1 : '+faceRatio.toFixed(1)+') 목이 길어졌어요. 실제 사람과는 다르지만 우아하고 쓸쓸한 분위기가 생겨요.':'얼굴 가로:세로 = 1 : '+faceRatio.toFixed(1)+'. 실제 사람의 얼굴과 비슷한 비례예요. 슬라이더를 움직여 보세요.';
+}
+[rFace,rNeck].forEach(r=>r.addEventListener('input',()=>{store[r.id]=r.value;save();drawProp()}));
+drawProp();
+
+/* =========================================================
+   3. 요소 바꾸기
+   ========================================================= */
+const FILTERS=[
+  {nm:'원본',f:'none'},{nm:'흑백',f:'grayscale(1)'},{nm:'차갑게',f:'hue-rotate(170deg) saturate(.9)'},
+  {nm:'어둡게',f:'brightness(.5) contrast(1.1)'},{nm:'흐리게',f:'saturate(.2) brightness(1.15)'},{nm:'강렬하게',f:'saturate(2.2) contrast(1.25)'}
+];
+const fB=document.getElementById('fBtns'), bed=document.getElementById('bedImg');
+function renderF(k){fB.innerHTML=FILTERS.map((x,i)=>'<button class="chip" style="--c:var(--el)" aria-pressed="'+(i===k)+'" data-f="'+i+'">'+x.nm+'</button>').join('');bed.style.filter=FILTERS[k].f}
+fB.addEventListener('click',e=>{const b=e.target.closest('[data-f]');if(b)renderF(+b.dataset.f)});
+renderF(0);
+
+const LINES=[
+  {nm:'곧은 선',w:2.5,dash:'',wob:false,d:'반듯하고 정돈된 느낌'},
+  {nm:'굵은 선',w:7,dash:'',wob:false,d:'힘 있고 단순한 느낌 (리히텐슈타인처럼)'},
+  {nm:'떨리는 선',w:2.5,dash:'',wob:true,d:'흔들리고 불안한 느낌'},
+  {nm:'점선',w:3,dash:'2 7',wob:false,d:'가볍고 흐릿한 느낌'}
+];
+const lB=document.getElementById('lBtns'), room=document.getElementById('room');
+function renderL(k){
+  const L=LINES[k];
+  lB.innerHTML=LINES.map((x,i)=>'<button class="chip" style="--c:var(--el)" aria-pressed="'+(i===k)+'" data-l="'+i+'">'+x.nm+'</button>').join('');
+  room.setAttribute('stroke-width',L.w); room.setAttribute('stroke-dasharray',L.dash||'none');
+  if(L.wob)room.setAttribute('filter','url(#wob)');else room.removeAttribute('filter');
+  document.getElementById('lineName').textContent=L.nm+' → '+L.d+'?';
+}
+lB.addEventListener('click',e=>{const b=e.target.closest('[data-l]');if(b)renderL(+b.dataset.l)});
+renderL(0);
+
+/* =========================================================
+   4. 대칭 거울 그리기
+   ========================================================= */
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d'), wrap=document.getElementById('canWrap');
+const W=cv.width,H=cv.height;
+let mode='lr', pc='#2a2420', pw=6, drawing=false, last=null, undoStack=[];
+const PENS=['#2a2420','#d8392b','#2f6fc0','#3f9a45','#ee8a1f','#7d4bb3'];
+function paper(){ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H)}
+paper();
+if(store.sym){const im=new Image();im.onload=()=>ctx.drawImage(im,0,0,W,H);im.src=store.sym}
+const penC=document.getElementById('penC'), penW=document.getElementById('penW');
+function renderPens(){
+  penC.innerHTML=PENS.map(c=>'<button class="sw" style="background:'+c+'" data-pc="'+c+'" aria-pressed="'+(pc===c)+'" aria-label="펜 색"></button>').join('');
+  penW.innerHTML=[3,6,14].map(w=>'<button class="sz" data-pw="'+w+'" aria-pressed="'+(pw===w)+'">'+(w===3?'가늘게':w===6?'보통':'굵게')+'</button>').join('');
+}
+penC.addEventListener('click',e=>{const b=e.target.closest('[data-pc]');if(b){pc=b.dataset.pc;renderPens()}});
+penW.addEventListener('click',e=>{const b=e.target.closest('[data-pw]');if(b){pw=+b.dataset.pw;renderPens()}});
+renderPens();
+document.getElementById('symMode').addEventListener('click',e=>{const b=e.target.closest('[data-m]');if(!b)return;mode=b.dataset.m;
+  [...e.currentTarget.children].forEach(x=>x.setAttribute('aria-pressed',String(x===b)));wrap.className='canwrap'+(mode==='lr'?'':' '+mode)});
+function pt(e){const r=cv.getBoundingClientRect();return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height}}
+function mirrors(p){const a=[p];if(mode==='lr'||mode==='quad')a.push({x:W-p.x,y:p.y});if(mode==='tb'||mode==='quad')a.push({x:p.x,y:H-p.y});if(mode==='quad')a.push({x:W-p.x,y:H-p.y});return a}
+function seg(a,b){const A=mirrors(a),B=mirrors(b);ctx.strokeStyle=pc;ctx.lineWidth=pw;ctx.lineCap='round';ctx.lineJoin='round';
+  for(let i=0;i<A.length;i++){ctx.beginPath();ctx.moveTo(A[i].x,A[i].y);ctx.lineTo(B[i].x,B[i].y);ctx.stroke()}}
+cv.addEventListener('pointerdown',e=>{e.preventDefault();cv.setPointerCapture(e.pointerId);drawing=true;
+  try{undoStack.push(ctx.getImageData(0,0,W,H));if(undoStack.length>20)undoStack.shift()}catch(err){}
+  last=pt(e);seg(last,{x:last.x+.01,y:last.y})});
+cv.addEventListener('pointermove',e=>{if(!drawing)return;const p=pt(e);seg(last,p);last=p});
+function endDraw(){if(!drawing)return;drawing=false;persist()}
+cv.addEventListener('pointerup',endDraw);cv.addEventListener('pointercancel',endDraw);
+function persist(){try{store.sym=cv.toDataURL('image/png');save()}catch(e){}}
+document.getElementById('cvUndo').onclick=()=>{const h=undoStack.pop();if(h){ctx.putImageData(h,0,0);persist()}};
+document.getElementById('cvClear').onclick=()=>{try{undoStack.push(ctx.getImageData(0,0,W,H))}catch(e){}paper();delete store.sym;save()};
+document.getElementById('cvSave').onclick=()=>{try{const a=document.createElement('a');a.download='대칭그림.png';a.href=cv.toDataURL('image/png');a.click()}catch(e){toast('저장하지 못했어요.')}};
+
+const ABC={opts:['좌우 대칭','상하 대칭','점대칭 — 가운데를 중심으로 반 바퀴(180°) 돌려도 같은 모양'],a:2,
+  ex:'N, S, Z는 접어서는 겹치지 않지만, <b>가운데 점을 중심으로 반 바퀴 돌리면</b> 원래 모양과 똑같아요. 이것을 <b>점대칭(회전 대칭)</b>이라고 해요. 바람개비나 태극 문양에서도 찾을 수 있어요.'};
+const abcO=document.getElementById('abcOpts'), abcF=document.getElementById('abcFb');
+function renderAbc(){
+  abcO.innerHTML=ABC.opts.map((o,k)=>'<button class="opt" data-k="'+k+'">'+o+'</button>').join('');
+  if(store.abc!=null)showAbc(store.abc);
+}
+function showAbc(k){[...abcO.children].forEach((b,i)=>{b.disabled=true;if(i===ABC.a)b.classList.add('right');else if(i===k)b.classList.add('wrong')});
+  abcF.innerHTML=(k===ABC.a?'<b style="color:var(--ok)">정답이에요!</b> ':'<b style="color:var(--no)">아쉬워요!</b> ')+ABC.ex;abcF.classList.add('on')}
+abcO.addEventListener('click',e=>{const b=e.target.closest('[data-k]');if(!b||b.disabled)return;store.abc=+b.dataset.k;save();showAbc(store.abc)});
+renderAbc();
+
+/* =========================================================
+   5. 명화 속 원리
+   ========================================================= */
+const PRS=['변화','통일','균형','조화','비례','대칭','대비','강조','점이','리듬'];
+const WORKS=[
+  {id:'starry',img:'images/starry.jpg',cap:'빈센트 반 고흐, 〈별이 빛나는 밤〉, 1889, 뉴욕 현대미술관',
+   q:'〈별이 빛나는 밤〉에서 어떤 조형 원리를 발견할 수 있나요?',
+   ex:'<b>예시 ① 리듬(율동)</b> — “달과 별, 구름과 바람의 움직임이 소용돌이치는 곡선으로 되풀이돼요. 그래서 바람이 눈에 보이는 것 같은 리듬감이 느껴져요.”<br><b>예시 ② 대비</b> — “어두운 파란 밤하늘에 노란 별과 달이 반짝여서 더 밝게 보여요.”<br><b>예시 ③ 강조</b> — “왼쪽의 검은 사이프러스 나무가 크고 어두워서 눈에 확 띄어요.”'},
+  {id:'arnolfini',img:'images/arnolfini.jpg',cap:'얀 반 에이크, 〈아르놀피니 부부의 초상〉, 1434, 런던 내셔널 갤러리',
+   q:'〈아르놀피니 부부의 초상〉에서 어떤 조형 원리를 발견할 수 있나요? 만약 두 인물의 크기가 달라진다면 어떤 느낌일까요?',
+   ex:'<b>예시 ① 균형·대칭</b> — “가운데의 둥근 거울과 샹들리에를 기준으로 남편과 아내가 양쪽에 서 있어요. 한쪽으로 치우치지 않아서 안정감이 느껴져요(대칭적 균형).”<br><b>예시 ② 대비</b> — “남편의 어두운 옷과 아내의 초록 드레스가 대비돼요.”<br><b>생각해 보기</b> — 한 사람만 아주 크게 그린다면 균형이 깨지고, 큰 사람이 더 중요해 보이는 <b>강조</b>의 느낌이 생길 거예요.'},
+  {id:'ambassadors',img:'images/ambassadors.jpg',cap:'한스 홀바인, 〈대사들〉, 1533, 런던 내셔널 갤러리',
+   q:'〈대사들〉의 아래쪽에 비스듬히 그려진 이상한 물체를 찾았나요? 어떤 조형 원리를 발견할 수 있나요?',
+   ex:'<b>예시 ① 변화</b> — “아래쪽의 해골은 정면에서 본 보통 모습이 아니라 길게 늘여 <b>형태를 왜곡</b>했어요. 형태에 변화를 준 거예요.” (화면 오른쪽 옆에서 비스듬히 보면 해골이 제 모양으로 보여요!)<br><b>예시 ② 대칭·균형</b> — “두 사람이 가운데 선반을 사이에 두고 양쪽에 서 있어서 안정적이에요.”<br><b>예시 ③ 질감(조형 요소)</b> — “털옷, 비단, 카펫의 질감이 진짜처럼 느껴져요.”'}
+];
+let wi=0;
+const wTabs=document.getElementById('wTabs'), wChips=document.getElementById('wChips'), wWhy=document.getElementById('wWhy'), wEx=document.getElementById('wEx');
+function wData(){return store.works[WORKS[wi].id]||(store.works[WORKS[wi].id]={pick:[],why:'',seen:false})}
+function renderWorks(){
+  wTabs.innerHTML=WORKS.map((w,i)=>{const d=store.works[w.id];const has=d&&(d.pick.length||d.why.trim());return '<button role="tab" class="'+(has?'has':'')+'" aria-current="'+(i===wi)+'" data-w="'+i+'">'+w.cap.split(',')[1].trim()+'</button>'}).join('');
+  const w=WORKS[wi], d=wData();
+  const img=document.getElementById('wImg');img.src=w.img;img.alt=w.cap;
+  document.getElementById('wCap').textContent=w.cap;
+  document.getElementById('wQ').textContent=w.q;
+  wChips.innerHTML=PRS.map(p=>'<button class="chip" aria-pressed="'+d.pick.includes(p)+'">'+p+'</button>').join('');
+  wWhy.value=d.why; wEx.innerHTML=w.ex; wEx.classList.toggle('on',!!d.seen);
+  document.getElementById('wShow').textContent=d.seen?'예시 답안 숨기기':'친구들의 예시 답안 보기';
+}
+wTabs.addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b){wi=+b.dataset.w;renderWorks()}});
+wChips.addEventListener('click',e=>{const c=e.target.closest('.chip');if(!c)return;const d=wData(),v=c.textContent,on=d.pick.includes(v);
+  d.pick=on?d.pick.filter(z=>z!==v):[...d.pick,v];c.setAttribute('aria-pressed',String(!on));save();renderTabsOnly()});
+wWhy.addEventListener('input',()=>{wData().why=wWhy.value;save();renderTabsOnly()});
+document.getElementById('wShow').onclick=()=>{const d=wData();
+  if(!d.seen&&!d.pick.length&&!d.why.trim()){toast('먼저 내 생각을 고르고 써 본 뒤에 확인해요!');return}
+  d.seen=!d.seen;save();renderWorks()};
+function renderTabsOnly(){[...wTabs.children].forEach((b,i)=>{const d=store.works[WORKS[i].id];b.classList.toggle('has',!!(d&&(d.pick.length||d.why.trim())))})}
+renderWorks();
+
+/* =========================================================
+   6. 형성평가 · 정리
+   ========================================================= */
+const MATCH=[
+  {d:'유사한 형과 색을 규칙적으로 배치하여 질서를 만드는 것',a:'통일'},
+  {d:'크기, 모양, 색 등 어떤 부분을 특별하게 두드러지게 하는 것',a:'강조'},
+  {d:'선, 모양, 색, 크기, 위치 등을 다르게 표현하여 단조롭지 않게 하는 것',a:'변화'},
+  {d:'선, 면, 색 등이 반복되면서 규칙적으로 이어져 생기는 시각적인 움직임',a:'리듬'},
+  {d:'형과 색의 배치가 어느 한쪽으로 치우치지 않고 안정을 이루는 것',a:'균형'}
+];
+const MOPTS=['통일','강조','변화','리듬','균형'];
+const mBox=document.getElementById('match');
+mBox.innerHTML=MATCH.map((m,i)=>'<div class="m" id="mm'+i+'"><span>'+(i+1)+'. '+m.d+'</span><select data-i="'+i+'" aria-label="'+(i+1)+'번 설명에 맞는 원리"><option value="">고르기</option>'+MOPTS.map(o=>'<option'+(store.match[i]===o?' selected':'')+'>'+o+'</option>').join('')+'</select></div>').join('');
+mBox.addEventListener('change',e=>{const s=e.target.closest('select');if(!s)return;store.match[s.dataset.i]=s.value;save();document.getElementById('mm'+s.dataset.i).className='m'});
+function gradeMatch(show){let n=0;MATCH.forEach((m,i)=>{const ok=store.match[i]===m.a;if(ok)n++;if(show)document.getElementById('mm'+i).className='m '+(store.match[i]?(ok?'ok':'no'):'')});return n}
+document.getElementById('mCheck').onclick=()=>{const n=gradeMatch(true);store.matchChecked=true;save();document.getElementById('mScore').textContent=n+' / '+MATCH.length+' 정답'+(n===MATCH.length?' 🎉':' — 빨간 칸을 다시 골라 보세요')};
+if(store.matchChecked)document.getElementById('mCheck').click();
+
+const OX=[
+  {q:'한 작품 속에서 조형 요소는 여러 가지가 함께 드러나지만, 조형 원리는 특징적인 것이므로 반드시 하나씩만 발견할 수 있다.',a:'X',ex:'하나의 작품에서 여러 개의 조형 요소와 조형 원리를 함께 발견할 수 있어요. 사과 실험실에서 ‘함께 보이는 원리’를 떠올려 보세요.'},
+  {q:'〈아르놀피니 부부의 초상〉에서 두 인물은 어느 한쪽으로 치우치지 않고 양쪽에 배치되어, 대칭적 균형을 이루고 있다.',a:'O',ex:'가운데 거울과 샹들리에를 축으로 두 인물이 양쪽에 서 있어 안정감이 느껴져요.'},
+  {q:'명화 속에서 조형 원리를 찾을 때에는 정답이 하나뿐이므로 이유를 설명할 필요가 없다.',a:'X',ex:'정답은 하나가 아니에요. 대신 내가 찾은 원리를 <b>그림 속 근거</b>를 들어 설명할 수 있어야 해요.'}
+];
+const oxBox=document.getElementById('ox');
+function renderOX(){
+  oxBox.innerHTML=OX.map((o,i)=>'<div class="q'+(store.ox[i]?' answered':'')+'" id="ox'+i+'"><div>'+(i+1)+'. '+o.q+'</div><div class="b">'+['O','X'].map(v=>{let c='';if(store.ox[i]){if(v===o.a)c='right';else if(v===store.ox[i])c='wrong'}return '<button data-i="'+i+'" data-v="'+v+'" class="'+c+'"'+(store.ox[i]?' disabled':'')+'>'+v+'</button>'}).join('')+'</div><div class="ex">'+(store.ox[i]===o.a?'⭕ 정답! ':'정답은 '+o.a+' — ')+o.ex+'</div></div>').join('');
+}
+oxBox.addEventListener('click',e=>{const b=e.target.closest('button[data-v]');if(!b||b.disabled)return;store.ox[b.dataset.i]=b.dataset.v;save();renderOX()});
+renderOX();
+
+function rows(){
+  const md=MISSIONS.filter(m=>store.mDone[m.id]).map(m=>m.nm);
+  const ox=OX.filter((o,i)=>store.ox[i]===o.a).length, oxT=Object.keys(store.ox).length;
+  const mT=Object.values(store.match).filter(Boolean).length;
+  const works=WORKS.map(w=>{const d=store.works[w.id];const nm=w.cap.split(',')[1].trim();if(!d||(!d.pick.length&&!d.why.trim()))return null;return nm+' : '+(d.pick.join(', ')||'(원리 미선택)')+(d.why.trim()?'\n  └ '+d.why.trim():'')}).filter(Boolean).join('\n');
+  return [
+    ['사과 실험실',md.length?md.length+' / '+MISSIONS.length+' 성공 ('+md.join(', ')+')':''],
+    ['두 그림의 비례 비교',(store.propCompare||'').trim()],
+    ['비례를 바꾼 느낌',(store.propFeel||'').trim()],
+    ['색을 바꾼 느낌',(store.colorFeel||'').trim()],
+    ['선을 바꾼 느낌',(store.lineFeel||'').trim()],
+    ['N, S, Z의 대칭',store.abc!=null?ABC.opts[store.abc].split(' —')[0]+(store.abc===ABC.a?' (정답)':' (오답)'):''],
+    ['우리 주변의 대칭',(store.symLife||'').trim()],
+    ['대칭 그림',store.sym?'__IMG__':''],
+    ['명화 속 원리',works],
+    ['형성평가',(mT||oxT)?'짝짓기 '+gradeMatch(false)+'/'+MATCH.length+' · O,X '+ox+'/'+OX.length:''],
+    ['나가기 질문',(store.exit||'').trim()]
+  ];
+}
+function buildReport(){
+  document.getElementById('report').innerHTML='<h3 style="margin-bottom:4px">조형 실험실 — 나의 기록</h3><p style="color:var(--ink-2);margin:0 0 6px;font-size:14px">조형 요소와 원리 체험 (교과서 34~37쪽)</p>'+
+    rows().map(([t,v])=>'<div class="row"><div class="tag">'+t+'</div><div class="val'+(v?'':' empty')+'">'+(v==='__IMG__'?'<img class="sym-out" src="'+store.sym+'" alt="내가 그린 대칭 그림">':v?esc(v):'아직 하지 않았어요')+'</div></div>').join('');
+}
+document.getElementById('copy').onclick=async()=>{
+  const txt='조형 실험실 — 나의 기록\n\n'+rows().map(([t,v])=>'['+t+']\n'+(v==='__IMG__'?'(그림 있음 — 인쇄 또는 그림 저장으로 제출)':(v||'-'))).join('\n\n');
+  try{await navigator.clipboard.writeText(txt);toast('복사했어요!')}catch(e){toast('복사하지 못했어요. 직접 선택해 복사해 주세요.')}
+};
+document.getElementById('print').onclick=()=>{buildReport();window.print()};
+document.getElementById('reset').onclick=()=>{
+  if(!confirm('기록과 그림을 모두 지울까요?'))return;
+  store={};init();save();
+  document.querySelectorAll('[data-save]').forEach(el=>el.value='');
+  row=fresh();cur=0;renderRow();renderMissions();evaluate(false);
+  rFace.value=100;rNeck.value=1.2;drawProp();
+  paper();undoStack=[];renderAbc();abcF.classList.remove('on');
+  wi=0;renderWorks();
+  document.querySelectorAll('#match select').forEach(s=>s.value='');document.querySelectorAll('#match .m').forEach(m=>m.className='m');document.getElementById('mScore').textContent='';
+  renderOX();buildReport();toast('모두 지웠어요');
+};
+
+const h=parseInt(location.hash.slice(1));if(h>=0&&h<=6)go(h);
+})();
+</script>
+</body>
+</html>

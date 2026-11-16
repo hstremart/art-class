@@ -37,6 +37,16 @@ window.LESSONS = [
     ready: true
   },
   {
+    id: 'elements-lab',
+    title: '조형 실험실',
+    area: '표현',
+    unit: '조형 요소와 원리',
+    period: '2~3차시',
+    summary: '사과 8개로 원리 7가지 만들기, 비례 늘이기, 색·선 바꾸기, 대칭 거울 그리기로 조형 원리를 직접 실험해요.',
+    thumb: 'lessons/elements-lab/images/bedroom.jpg',
+    ready: true
+  },
+  {
     id: 'chaekgeori',
     title: '책가도 속 숨은 이야기',
     area: '감상',
