@@ -27,6 +27,16 @@ window.LESSONS = [
     ready: true
   },
   {
+    id: 'art-book',
+    title: '나만의 감상 BOOK',
+    area: '감상',
+    unit: '현대미술 감상 · 수행평가',
+    period: '4차시',
+    summary: '현대미술 작가 한 명을 골라 그리고, 검색 없이 유추하고, 조사해 비교한 뒤 질문을 만들어 한 권의 감상 책으로 엮어요.',
+    thumb: 'lessons/art-book/images/thumb.svg',
+    ready: true
+  },
+  {
     id: 'elements-principles',
     title: '미술의 언어 사전',
     area: '표현',

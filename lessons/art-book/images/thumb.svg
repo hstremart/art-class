@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 200">
+  <rect width="320" height="200" fill="#dcedf8"/>
+  <circle cx="270" cy="40" r="56" fill="#f2c230" opacity=".55"/>
+  <circle cx="40" cy="175" r="44" fill="#c4532d" opacity=".25"/>
+  <g transform="translate(160 112)">
+    <path d="M0 -62 C-30 -74 -70 -74 -104 -62 L-104 62 C-70 50 -30 50 0 62 Z" fill="#fffdf9" stroke="#2a2420" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M0 -62 C30 -74 70 -74 104 -62 L104 62 C70 50 30 50 0 62 Z" fill="#fffdf9" stroke="#2a2420" stroke-width="3" stroke-linejoin="round"/>
+    <line x1="0" y1="-62" x2="0" y2="62" stroke="#2a2420" stroke-width="3"/>
+    <rect x="-88" y="-46" width="72" height="56" rx="4" fill="#1f86c7"/>
+    <circle cx="-52" cy="-22" r="14" fill="#f2c230"/>
+    <path d="M-88 10 L-64 -8 L-46 4 L-30 -10 L-16 2 L-16 10 Z" fill="#155f8f"/>
+    <g stroke="#b5aba0" stroke-width="3" stroke-linecap="round">
+      <line x1="-86" y1="26" x2="-20" y2="26"/><line x1="-86" y1="38" x2="-34" y2="38"/>
+      <line x1="18" y1="-40" x2="86" y2="-40"/><line x1="18" y1="-28" x2="80" y2="-28"/><line x1="18" y1="-16" x2="86" y2="-16"/>
+      <line x1="18" y1="-4" x2="70" y2="-4"/>
+    </g>
+    <text x="52" y="38" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#c4532d" text-anchor="middle">?</text>
+  </g>
+</svg>
