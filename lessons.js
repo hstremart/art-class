@@ -17,13 +17,13 @@
 */
 window.LESSONS = [
   {
-    id: 'anderson-critique',
+    id: 'feldman-critique',
     title: '그림과 대화하는 네 걸음',
     area: '감상',
-    unit: '앤더슨 비평 4단계',
+    unit: '펠드먼 비평 4단계',
     period: '1차시',
-    summary: '반응 · 기술 · 해석 · 평가 순서로 김홍도 〈씨름〉을 감상하고 나만의 감상문을 써요.',
-    thumb: 'lessons/anderson-critique/images/ssireum.jpg',
+    summary: '기술 · 분석 · 해석 · 판단 순서로 김홍도 〈씨름〉을 감상하고, 비평 관점을 골라 나만의 감상문을 써요.',
+    thumb: 'lessons/feldman-critique/images/ssireum.jpg',
     ready: true
   },
   {

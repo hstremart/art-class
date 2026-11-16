@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>펠드먼 비평 4단계</title>
+<meta name="description" content="중학교 1학년 미술 감상 1차시 — 펠드먼 비평 4단계(기술·분석·해석·판단)로 김홍도 〈씨름〉 감상하기">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f7f3ec; --surface:#fffdf9; --surface-2:#f1ebe1; --ink:#2a2420; --ink-2:#5e554d; --line:#e2d9cc;
+  --s1:#2f6690; --s1-soft:#deeaf3;   /* 기술 */
+  --s2:#c4553a; --s2-soft:#f8e4dd;   /* 분석 */
+  --s3:#3f7d4e; --s3-soft:#e1efe3;   /* 해석 */
+  --s4:#7a4a8c; --s4-soft:#ece2f1;   /* 판단 */
+  --ok:#3f7d4e; --ok-soft:#e1efe3; --no:#b23b3b; --no-soft:#f5dede;
+  --accent:var(--ink); --radius:14px; --shadow:0 1px 2px rgba(60,40,20,.06),0 6px 20px rgba(60,40,20,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+    --s1:#7fb2dc; --s1-soft:#1f2c38; --s2:#ec8a70; --s2-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --s3:#86c294; --s3-soft:#1f3124; --s4:#c49ad4; --s4-soft:#30243a;
+    --shadow:none;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1917; --surface:#24211e; --surface-2:#2d2925; --ink:#efe8df; --ink-2:#b5aba0; --line:#3a352f;
+  --s1:#7fb2dc; --s1-soft:#1f2c38; --s2:#ec8a70; --s2-soft:#3b2620; --ok:#86c294; --ok-soft:#1f3124; --no:#ef8a8a; --no-soft:#3a2222; --s3:#86c294; --s3-soft:#1f3124; --s4:#c49ad4; --s4-soft:#30243a;
+  --shadow:none;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 "Noto Sans KR",system-ui,sans-serif;word-break:keep-all}
+h1,h2,h3{font-family:"Gowun Batang",serif;line-height:1.3;margin:0 0 .5em}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+
+/* header & nav */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;height:56px}
+.brand{font-family:"Gowun Batang",serif;font-weight:700;white-space:nowrap}
+.home{color:var(--ink-2);text-decoration:none;font-size:14px;white-space:nowrap;padding:6px 10px;border:1px solid var(--line);border-radius:999px}
+.home:hover{color:var(--ink);border-color:var(--ink-2)}
+.steps{display:flex;gap:4px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.steps::-webkit-scrollbar{display:none}
+.steps button{border:0;background:none;padding:6px 10px;border-radius:999px;cursor:pointer;white-space:nowrap;color:var(--ink-2);font-size:14px}
+.steps button[aria-current="true"]{background:var(--ink);color:var(--bg)}
+.steps button .n{font-weight:700;margin-right:3px}
+
+section.panel{display:none;padding:28px 0 64px}
+section.panel.on{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* intro */
+.hero{display:grid;gap:28px;grid-template-columns:1.1fr .9fr;align-items:center;padding:12px 0 8px}
+.hero h1{font-size:clamp(28px,5vw,44px)}
+.hero p.lead{font-size:18px;color:var(--ink-2)}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-top:16px}
+.goal b{display:block;font-size:13px;color:var(--ink-2);letter-spacing:.04em;margin-bottom:4px}
+.goal ul{margin:0;padding-left:20px}
+.cover{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.cover figcaption{font-size:13px;color:var(--ink-2);padding:8px 12px;background:var(--surface)}
+
+.four{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:32px 0}
+.card4{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--radius);padding:16px}
+.card4 .k{font-size:13px;color:var(--c);font-weight:700}
+.card4 h3{font-size:22px;margin:2px 0 6px}
+.card4 p{margin:0;color:var(--ink-2);font-size:15px}
+.arrow{color:var(--ink-2);font-size:14px;text-align:center;margin-top:-14px}
+
+.example{display:grid;grid-template-columns:320px 1fr;gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+.example img{border-radius:10px}
+.example .meta{font-size:13px;color:var(--ink-2);margin-top:8px}
+.ex-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.ex-tabs button{border:1px solid var(--line);background:var(--surface-2);padding:4px 12px;border-radius:999px;cursor:pointer;font-size:14px}
+.ex-tabs button.on{background:var(--c);border-color:var(--c);color:#fff}
+.ex-body{min-height:150px;font-size:15.5px}
+.ex-body mark{background:var(--s2-soft);color:inherit;padding:0 2px;border-radius:3px}
+
+.cta{display:flex;justify-content:center;margin-top:28px}
+.btn{border:0;border-radius:999px;padding:12px 22px;background:var(--ink);color:var(--bg);font-weight:700;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn:focus-visible,.steps button:focus-visible,.chip:focus-visible{outline:3px solid var(--s2);outline-offset:2px}
+
+/* stage layout */
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:24px;align-items:start}
+.art{position:sticky;top:72px}
+.art .frame{border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--surface);cursor:zoom-in;position:relative}
+.art .frame img{max-height:calc(100vh - 170px);width:100%;object-fit:contain;background:var(--surface-2)}
+.art .hint{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:3px 10px;border-radius:999px}
+.art .cap{font-size:13px;color:var(--ink-2);margin-top:8px}
+.stage-head{border-left:5px solid var(--c);padding-left:14px;margin-bottom:16px}
+.stage-head .k{color:var(--c);font-weight:700;font-size:14px}
+.stage-head h2{font-size:30px;margin:2px 0 4px}
+.stage-head p{margin:0;color:var(--ink-2)}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;margin-bottom:14px}
+.box h3{font-size:18px;margin-bottom:8px}
+.qs{margin:0;padding-left:20px;color:var(--ink-2)}
+.qs li{margin:2px 0}
+.mission{list-style:none;padding:0;margin:0}
+.mission li{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-bottom:1px dashed var(--line)}
+.mission li:last-child{border-bottom:0}
+.mission input{margin-top:6px;accent-color:var(--c);width:18px;height:18px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 4px}
+.chips .lab{font-size:13px;color:var(--ink-2);width:100%;margin-top:6px}
+.chip{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:3px 11px;font-size:14px;cursor:pointer}
+.chip:hover{border-color:var(--c);color:var(--c)}
+label.fl{display:block;font-weight:700;margin:10px 0 6px}
+label.fl small{font-weight:400;color:var(--ink-2)}
+textarea{width:100%;min-height:120px;resize:vertical;border:1px solid var(--line);border-radius:10px;padding:12px;background:var(--bg);color:var(--ink);font:inherit;line-height:1.7}
+textarea:focus{outline:2px solid var(--c);border-color:transparent}
+.count{font-size:12px;color:var(--ink-2);text-align:right;margin-top:2px}
+details.info{background:var(--c-soft);border-radius:10px;padding:10px 14px;margin-top:10px}
+details.info summary{cursor:pointer;font-weight:700;color:var(--c)}
+details.info dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:10px 0 0;font-size:15px}
+details.info dt{color:var(--ink-2)}
+details.info dd{margin:0}
+.nav-row{display:flex;justify-content:space-between;gap:8px;margin-top:18px}
+.tip{font-size:14px;color:var(--ink-2);background:var(--surface-2);border-radius:10px;padding:10px 12px;margin-top:8px}
+
+/* 기술 연습 */
+.sorter{display:grid;gap:6px}
+.sr{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--bg)}
+.sr.right{border-color:var(--ok);background:var(--ok-soft)}
+.sr.wrong{border-color:var(--no);background:var(--no-soft)}
+.sr .why{grid-column:1/-1;font-size:13.5px;color:var(--ink-2);display:none}
+.sr.right .why,.sr.wrong .why{display:block}
+.sr .bt{display:flex;gap:4px}
+.sr .bt button{border:1px solid var(--line);background:var(--surface-2);border-radius:999px;padding:3px 10px;font-size:13.5px;cursor:pointer;white-space:nowrap}
+.sr .bt button[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.warm{background:var(--surface-2);border-radius:var(--radius);padding:12px 16px;margin-bottom:14px}
+.warm b{font-size:14px}
+.warm input{width:100%;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--bg);color:var(--ink);font:inherit;margin-top:6px}
+/* 판단 관점 */
+.views{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.view{text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;cursor:pointer}
+.view b{display:block;font-family:"Gowun Batang",serif;font-size:17px}
+.view span{font-size:13.5px;color:var(--ink-2);display:block;line-height:1.5}
+.view[aria-pressed="true"]{border-color:var(--c);box-shadow:0 0 0 2px var(--c) inset;background:var(--c-soft)}
+.view:focus-visible{outline:3px solid var(--c);outline-offset:2px}
+.vq{display:none;margin-top:6px}
+.vq.on{display:block}
+
+/* summary */
+.report{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.report .row{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--line)}
+.report .row:last-child{border-bottom:0}
+.report .tag{font-weight:700;color:var(--c)}
+.report .txt{white-space:pre-wrap}
+.report .empty{color:var(--ink-2);font-style:italic}
+.check{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0}
+.check label{display:flex;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;opacity:0;transition:.2s;pointer-events:none;z-index:50}
+.toast.on{opacity:1}
+
+/* zoom */
+.zoom{position:fixed;inset:0;background:rgba(10,8,6,.92);z-index:40;display:none;overflow:auto;cursor:zoom-out}
+.zoom.on{display:block}
+.zoom img{max-width:none;width:180%;margin:0 auto}
+@media (min-width:900px){.zoom img{width:auto;height:180vh}}
+.zoom .x{position:fixed;top:12px;right:12px;background:#fff;color:#000;border:0;border-radius:999px;width:40px;height:40px;font-size:20px;cursor:pointer}
+
+footer{border-top:1px solid var(--line);padding:20px 0 40px;color:var(--ink-2);font-size:13px}
+
+@media (max-width:860px){
+  .hero,.stage,.example{grid-template-columns:1fr}
+  .four{grid-template-columns:repeat(2,1fr)}
+  .art{position:static}
+  .art .frame img{max-height:55vh}
+  .brand{display:none}
+  .steps{margin-left:0}
+  .check{grid-template-columns:1fr}
+  .report .row{grid-template-columns:1fr;gap:4px}
+  .views{grid-template-columns:1fr}
+}
+@media (max-width:480px){.sr{grid-template-columns:1fr}}
+@media print{
+  header.top,.nav-row,.actions,.check,footer,.no-print{display:none!important}
+  section.panel{display:none!important}
+  section#p5{display:block!important;padding:0}
+  body{background:#fff;color:#000}
+  .report{border:0;padding:0}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="home" href="../../" aria-label="수업 목록으로">← 목록</a>
+    <div class="brand">펠드먼 비평 4단계</div>
+    <nav class="steps" aria-label="수업 단계">
+      <button data-go="0" aria-current="true"><span class="n">0</span>시작</button>
+      <button data-go="1"><span class="n">1</span>기술</button>
+      <button data-go="2"><span class="n">2</span>분석</button>
+      <button data-go="3"><span class="n">3</span>해석</button>
+      <button data-go="4"><span class="n">4</span>판단</button>
+      <button data-go="5"><span class="n">✓</span>정리</button>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+
+<!-- 0. 시작 -->
+<section class="panel on" id="p0">
+  <div class="hero">
+    <div>
+      <p style="color:var(--ink-2);margin:0 0 6px">중학교 1학년 미술 · 감상 1차시</p>
+      <h1>그림과 대화하는<br>네 걸음</h1>
+      <p class="lead">“좋다 / 별로다”로 끝나는 감상에서 벗어나, <b>보이는 것에서 출발해 근거를 들어 작품을 이야기하는 방법</b>을 배워요.</p>
+      <div class="goal">
+        <b>학습 목표</b>
+        <ul>
+          <li>펠드먼 비평의 네 단계(기술 · 분석 · 해석 · 판단)를 설명할 수 있다.</li>
+          <li>조형 요소와 원리를 근거로 작품을 분석하고, 나의 생각을 글로 쓸 수 있다.</li>
+        </ul>
+      </div>
+    </div>
+    <figure class="cover" style="margin:0">
+      <img src="images/ssireum.jpg" alt="김홍도의 씨름. 둥글게 둘러앉은 구경꾼들 가운데에서 두 남자가 씨름을 하고 있다.">
+      <figcaption>오늘 함께 볼 작품 — 김홍도, 〈씨름〉</figcaption>
+    </figure>
+  </div>
+
+  <div class="four">
+    <div class="card4" style="--c:var(--s1)"><div class="k">1단계</div><h3>기술</h3><p>무엇이 보이나? 보이는 것만 그대로 적기</p></div>
+    <div class="card4" style="--c:var(--s2)"><div class="k">2단계</div><h3>분석</h3><p>어떻게 짜여 있나? 조형 요소와 원리로 살피기</p></div>
+    <div class="card4" style="--c:var(--s3)"><div class="k">3단계</div><h3>해석</h3><p>무엇을 말하려 하나? 증거로 의미 추측하기</p></div>
+    <div class="card4" style="--c:var(--s4)"><div class="k">4단계</div><h3>판단</h3><p>가치 있는 작품인가? 관점을 정해 평가하기</p></div>
+  </div>
+  <p class="arrow">눈 → 머리 → 마음 → 판단, 순서대로 올라가요. 앞 단계가 뒤 단계의 <b>근거</b>가 됩니다.</p>
+
+  <h2 style="margin-top:36px">먼저 예시를 살펴볼까요?</h2>
+  <div class="example" id="example">
+    <div>
+      <img src="images/matisse.jpg" alt="앙리 마티스의 붉은 색의 조화. 붉은 방 안에서 여인이 식탁을 차리고, 창밖으로 초록 정원이 보인다.">
+      <div class="meta">앙리 마티스, 〈붉은 색의 조화〉, 1908, 캔버스에 유채, 180×220cm</div>
+    </div>
+    <div>
+      <div class="ex-tabs" role="tablist">
+        <button class="on" data-ex="0" style="--c:var(--s1)">기술</button>
+        <button data-ex="1" style="--c:var(--s2)">분석</button>
+        <button data-ex="2" style="--c:var(--s3)">해석</button>
+        <button data-ex="3" style="--c:var(--s4)">판단</button>
+      </div>
+      <div class="ex-body" id="exBody" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <div class="cta"><button class="btn" data-go="1">이제 〈씨름〉을 감상해 봐요 →</button></div>
+</section>
+
+<!-- 1. 기술 -->
+<section class="panel" id="p1" style="--c:var(--s1);--c-soft:var(--s1-soft)">
+  <div class="stage">
+    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉 · 작품을 크게 보고 구석구석 살펴보세요.</div></div>
+    <div>
+      <div class="warm">
+        <b>🙂 몸풀기 — 첫 느낌 한마디</b> <span style="font-size:13px;color:var(--ink-2)">떠오른 느낌은 여기 적어 두고, 기술 단계에서는 잠시 내려놓아요.</span>
+        <input type="text" id="w0" data-save placeholder="예) 시끌벅적한 운동회 같다">
+      </div>
+      <div class="stage-head"><div class="k">1단계</div><h2>기술</h2><p>탐정처럼 <b>눈에 보이는 것만</b> 그대로 적어요. 느낌이나 짐작은 아직 넣지 않아요.</p></div>
+
+      <div class="box">
+        <h3>연습: 기술일까, 아닐까?</h3>
+        <div class="sorter" id="sorter"></div>
+        <div class="tip" id="sortRes">문장마다 골라 보세요.</div>
+      </div>
+
+      <div class="box">
+        <h3>👀 관찰 미션</h3>
+        <ul class="mission">
+          <li><input type="checkbox" id="m1" data-save><label for="m1">구경꾼은 모두 몇 명일까요? 어떤 모양으로 앉아 있나요?</label></li>
+          <li><input type="checkbox" id="m2" data-save><label for="m2">씨름과 상관없이 혼자 딴 곳을 보는 사람을 찾아보세요.</label></li>
+          <li><input type="checkbox" id="m3" data-save><label for="m3">구경꾼들은 어떤 자세로 앉거나 서 있나요? 손에 무엇을 들고 있나요?</label></li>
+          <li><input type="checkbox" id="m4" data-save><label for="m4">배경은 어떻게 그려져 있나요?</label></li>
+          <li><input type="checkbox" id="m5" data-save><label for="m5">그림 속 사람들의 손을 하나하나 자세히 보세요. 어딘가 이상한 손이 있나요?</label></li>
+        </ul>
+        <details class="info">
+          <summary>작품 정보 카드 열기</summary>
+          <dl>
+            <dt>작가</dt><dd>김홍도 (1745~?) · 호는 단원(檀園)</dd>
+            <dt>제목</dt><dd>〈씨름〉</dd>
+            <dt>재료</dt><dd>종이에 먹과 옅은 채색 (수묵담채)</dd>
+            <dt>크기</dt><dd>약 27 × 23 cm</dd>
+          </dl>
+        </details>
+        <label class="fl" for="d1">나의 기술 <small>(작품 정보 + 보이는 것 5가지 이상)</small></label>
+        <textarea id="d1" data-save placeholder="예) 김홍도가 종이에 먹과 옅은 색으로 그린 〈씨름〉이다. 가운데에서 두 사람이 서로 맞붙어 있고, 그 둘레에 구경꾼들이…"></textarea>
+        <div class="count" data-count="d1"></div>
+        <div class="tip">💡 “재미있어 보인다”, “아마 ~일 것이다”는 기술이 아니에요. <b>누가 봐도 똑같이 보이는 사실</b>만 써요.</div>
+      </div>
+      <div class="nav-row"><button class="btn ghost" data-go="0">← 시작</button><button class="btn" data-go="2">다음: 분석 →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. 분석 -->
+<section class="panel" id="p2" style="--c:var(--s2);--c-soft:var(--s2-soft)">
+  <div class="stage">
+    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉 · 선, 색, 배치를 살펴보세요.</div></div>
+    <div>
+      <div class="stage-head"><div class="k">2단계</div><h2>분석</h2><p>기술에서 찾은 것들이 <b>어떻게 짜여 있는지</b> 조형 요소와 원리로 살펴요.</p></div>
+      <div class="box">
+        <h3>생각해 볼 질문</h3>
+        <ol class="qs">
+          <li>그림을 보면 눈이 가장 먼저 어디로 가나요? 왜 그곳으로 갈까요? (강조)</li>
+          <li>사람들은 어떤 모양으로 배치되어 있나요? (구도)</li>
+          <li>구경꾼 무리들은 화면의 어디 어디에 놓여 있나요? 한쪽으로 쏠려 있나요? (균형)</li>
+          <li>선은 굵은가요, 가는가요? 색은 진한가요, 옅은가요? 어떤 느낌을 주나요?</li>
+          <li>씨름꾼의 몸은 어느 방향으로 기울어 있나요? 움직임이 느껴지나요? (동세)</li>
+        </ol>
+        <div class="chips" data-for="a1">
+          <span class="lab">조형 요소</span>
+          <button class="chip">점</button><button class="chip">선</button><button class="chip">면</button><button class="chip">색</button><button class="chip">형</button><button class="chip">명암</button><button class="chip">질감</button><button class="chip">공간감</button><button class="chip">양감</button>
+          <span class="lab">조형 원리</span>
+          <button class="chip">비례</button><button class="chip">강조</button><button class="chip">대비</button><button class="chip">율동</button><button class="chip">동세</button><button class="chip">반복</button><button class="chip">변화</button><button class="chip">통일</button><button class="chip">조화</button><button class="chip">균형</button>
+          <span class="lab">구도</span>
+          <button class="chip">원형 구도</button><button class="chip">삼각형 구도</button><button class="chip">대각선 구도</button><button class="chip">수평선 구도</button>
+        </div>
+        <label class="fl" for="a1">나의 분석 <small>(조형 요소 3가지, 조형 원리 2가지 이상)</small></label>
+        <textarea id="a1" data-save placeholder="예) 구경꾼들이 둥글게 둘러앉은 원형 구도라서 시선이 가운데 씨름꾼에게 모인다(강조). 배경을 비워 두어…"></textarea>
+        <div class="count" data-count="a1"></div>
+        <div class="tip">💡 용어가 헷갈리면 <a href="../elements-principles/" target="_blank" rel="noopener">미술의 언어 사전</a>을 열어 확인해요. “무엇이 + 어떻게 + 그래서 어떤 효과”로 쓰면 좋아요.</div>
+      </div>
+      <div class="nav-row"><button class="btn ghost" data-go="1">← 기술</button><button class="btn" data-go="3">다음: 해석 →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 해석 -->
+<section class="panel" id="p3" style="--c:var(--s3);--c-soft:var(--s3-soft)">
+  <div class="stage">
+    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉</div></div>
+    <div>
+      <div class="stage-head"><div class="k">3단계</div><h2>해석</h2><p>기술과 분석에서 모은 <b>증거</b>로 작품의 의미를 추측해요.</p></div>
+      <div class="box">
+        <h3>생각해 볼 질문</h3>
+        <ol class="qs">
+          <li>작가는 이 그림으로 무엇을 보여 주고 싶었을까요?</li>
+          <li>내가 그림 속 한 사람이라면 무슨 생각을 하고 있을까요? (구경꾼, 엿장수, 씨름꾼…)</li>
+          <li>내가 작가라면 이 작품에 어떤 제목을 붙이고 싶나요? 왜 그런가요?</li>
+        </ol>
+        <details class="info">
+          <summary>해석을 돕는 배경 정보</summary>
+          <dl>
+            <dt>시대</dt><dd>조선 후기, 18세기 후반</dd>
+            <dt>양식</dt><dd>풍속화 — 서민들의 평범한 일상을 그린 그림</dd>
+            <dt>소장</dt><dd>국립중앙박물관 · 『단원 풍속도첩』 중 한 점 (보물)</dd>
+          </dl>
+        </details>
+        <label class="fl" for="i1">나의 해석 <small>(3줄 이상, 앞 단계의 근거와 연결)</small></label>
+        <textarea id="i1" data-save placeholder="예) 배경을 생략하고 사람들만 그린 것으로 보아, 작가는 씨름 자체보다 그것을 즐기는 사람들의 모습을 보여 주고 싶었던 것 같다. 왜냐하면…"></textarea>
+        <div class="count" data-count="i1"></div>
+        <label class="fl" for="i2">내가 붙인 새 제목</label>
+        <textarea id="i2" data-save style="min-height:60px" placeholder="예) 〈오늘의 승자는?〉"></textarea>
+        <div class="tip">💡 “~인 것 같다”로 끝내지 말고, <b>“왜냐하면 그림에서 ~가 보이기 때문이다”</b>로 근거를 붙여 보세요.</div>
+      </div>
+      <div class="nav-row"><button class="btn ghost" data-go="2">← 분석</button><button class="btn" data-go="4">다음: 판단 →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 판단 -->
+<section class="panel" id="p4" style="--c:var(--s4);--c-soft:var(--s4-soft)">
+  <div class="stage">
+    <div class="art"><div class="frame" data-zoom><img src="images/ssireum.jpg" alt="김홍도의 씨름"><span class="hint">🔍 눌러서 크게 보기</span></div><div class="cap">김홍도, 〈씨름〉</div></div>
+    <div>
+      <div class="stage-head"><div class="k">4단계</div><h2>판단</h2><p>이 작품은 감상할 가치가 있을까요? <b>관점</b>을 정하고, 앞 단계의 근거로 판단해요.</p></div>
+      <div class="box">
+        <h3>어떤 관점으로 판단할까? <small style="font-weight:400;color:var(--ink-2)">— 교과서 ‘미술 비평의 관점’</small></h3>
+        <p style="margin:0;color:var(--ink-2);font-size:14.5px">하나 이상 골라 보세요. 고른 관점마다 질문이 나와요.</p>
+        <div class="views" id="views">
+          <button class="view" data-v="v1"><b>모방론적 관점</b><span>대상을 얼마나 충실하게 재현했나?</span></button>
+          <button class="view" data-v="v2"><b>형식주의적 관점</b><span>조형 요소와 원리가 아름답게 어우러지나?</span></button>
+          <button class="view" data-v="v3"><b>표현주의적 관점</b><span>어떤 감정을 불러일으키나?</span></button>
+          <button class="view" data-v="v4"><b>맥락주의적 관점</b><span>시대·지역·사회적 배경을 잘 담고 있나?</span></button>
+        </div>
+        <div class="vq" data-q="v1"><label class="fl" for="j1">모방론 <small>— 사람들의 모습과 동작이 실제처럼 생생하게 그려졌나요?</small></label><textarea id="j1" data-save style="min-height:80px"></textarea></div>
+        <div class="vq" data-q="v2"><label class="fl" for="j2">형식주의 <small>— 2단계에서 찾은 구도, 선, 색이 잘 어우러지나요?</small></label><textarea id="j2" data-save style="min-height:80px"></textarea></div>
+        <div class="vq" data-q="v3"><label class="fl" for="j3">표현주의 <small>— 보는 사람에게 어떤 감정이 전해지나요? 첫 느낌과 비교해 보세요.</small></label><textarea id="j3" data-save style="min-height:80px"></textarea></div>
+        <div class="vq" data-q="v4"><label class="fl" for="j4">맥락주의 <small>— 조선 후기 서민들의 삶을 잘 보여 주나요? 그 점이 왜 가치 있나요?</small></label><textarea id="j4" data-save style="min-height:80px"></textarea></div>
+      </div>
+      <div class="box">
+        <label class="fl" for="e4" style="margin-top:0">최종 판단 <small>— 그래서, 이 작품은 감상할 가치가 있나요? 왜 그런가요?</small></label>
+        <textarea id="e4" data-save style="min-height:90px" placeholder="예) 나는 형식주의 관점에서 이 작품이 감상할 가치가 있다고 생각한다. 왜냐하면…"></textarea>
+        <div class="count" data-count="e4"></div>
+        <label class="fl" for="e1">처음과 달라진 생각 <small>— 몸풀기에서 쓴 첫 느낌이 감상하면서 어떻게 바뀌었나요?</small></label>
+        <div class="tip" id="w0show" style="margin-top:0"></div>
+        <textarea id="e1" data-save style="min-height:70px;margin-top:6px"></textarea>
+      </div>
+      <div class="nav-row"><button class="btn ghost" data-go="3">← 해석</button><button class="btn" data-go="5">정리하기 ✓</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 정리 -->
+<section class="panel" id="p5">
+  <h2 style="font-size:30px">나의 감상문</h2>
+  <p style="color:var(--ink-2);margin-top:-4px" class="no-print">각 단계에서 쓴 글이 모였어요. 스스로 점검한 뒤 복사하거나 인쇄해 제출하세요.</p>
+
+  <h3 class="no-print" style="margin-top:20px">스스로 점검하기</h3>
+  <div class="check">
+    <label><input type="checkbox" data-save id="c1"> 기술: 느낌 없이 <b>보이는 사실</b>만 썼다.</label>
+    <label><input type="checkbox" data-save id="c2"> 분석: 조형 요소 3가지, 원리 2가지 이상을 썼다.</label>
+    <label><input type="checkbox" data-save id="c3"> 해석: 앞 단계의 <b>근거</b>와 연결했다.</label>
+    <label><input type="checkbox" data-save id="c4"> 판단: <b>관점</b>을 정하고 “좋다/싫다”가 아니라 가치를 판단했다.</label>
+    <label><input type="checkbox" data-save id="c5"> 인터넷 문장을 그대로 옮기지 않았다.</label>
+    <label><input type="checkbox" data-save id="c6"> 맞춤법과 띄어쓰기를 확인했다.</label>
+  </div>
+
+  <div class="report" id="report"></div>
+
+  <div class="actions">
+    <button class="btn" id="copy">📋 전체 복사</button>
+    <button class="btn ghost" id="print">🖨 인쇄</button>
+    <button class="btn ghost" id="reset">처음부터 다시 쓰기</button>
+  </div>
+</section>
+</main>
+
+<div class="zoom" id="zoom" role="dialog" aria-label="작품 크게 보기"><button class="x" aria-label="닫기">✕</button><img src="images/ssireum.jpg" alt="김홍도의 씨름 확대"></div>
+<div class="toast" id="toast"></div>
+
+<footer>
+  <div class="wrap">
+    작품 이미지: 김홍도 〈씨름〉(국립중앙박물관 소장), 앙리 마티스 〈붉은 색의 조화〉(에르미타주 미술관 소장) — 퍼블릭 도메인, Wikimedia Commons.<br>
+    쓴 글은 이 기기의 브라우저에만 저장되며 어디에도 전송되지 않아요.
+  </div>
+</footer>
+
+<script>
+(function(){
+  const KEY='feldman-ssireum-v1', OLD='anderson-ssireum-v1';
+  let store={};
+  try{
+    const cur=localStorage.getItem(KEY);
+    if(cur)store=JSON.parse(cur)||{};
+    else{ /* 앤더슨 버전에서 쓴 글 옮겨 오기 */
+      const o=JSON.parse(localStorage.getItem(OLD)||'null');
+      if(o){const map={r1:'w0',d1:'a1',i1:'i1',i2:'i2',e1:'e1',e4:'e4',m1:'m1',m2:'m2',m4:'m4',m5:'m5'};
+        for(const k in map)if(o[k])store[map[k]]=o[k];
+        if(o.e2)store.j2=o.e2; if(o.e3)store.j4=o.e3;
+        store.views={v2:!!o.e2,v4:!!o.e3};
+        localStorage.setItem(KEY,JSON.stringify(store));}
+    }
+  }catch(e){store={}}
+  store.sort=store.sort||{}; store.views=store.views||{};
+  const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(store))}catch(e){}};
+
+  /* navigation */
+  const panels=[...document.querySelectorAll('section.panel')];
+  const navBtns=[...document.querySelectorAll('.steps button')];
+  function go(i){
+    panels.forEach((p,k)=>p.classList.toggle('on',k===i));
+    navBtns.forEach((b,k)=>b.setAttribute('aria-current',k===i?'true':'false'));
+    navBtns[i].scrollIntoView({inline:'nearest',block:'nearest'});
+    if(i===4) showW0();
+    if(i===5) buildReport();
+    window.scrollTo({top:0,behavior:'smooth'});
+    try{history.replaceState(null,'','#'+i)}catch(e){}
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)go(+b.dataset.go)});
+
+  /* saved inputs */
+  document.querySelectorAll('[data-save]').forEach(el=>{
+    const v=store[el.id];
+    if(el.type==='checkbox'){el.checked=!!v;el.addEventListener('change',()=>{store[el.id]=el.checked;save()})}
+    else{if(v)el.value=v;el.addEventListener('input',()=>{store[el.id]=el.value;save();count(el.id)})}
+  });
+  function count(id){const c=document.querySelector('[data-count="'+id+'"]');if(!c)return;const t=document.getElementById(id).value.trim();c.textContent=t?t.replace(/\s/g,'').length+'자':''}
+  document.querySelectorAll('[data-count]').forEach(c=>count(c.dataset.count));
+
+  /* chips insert words */
+  document.querySelectorAll('.chips').forEach(g=>{
+    g.addEventListener('click',e=>{
+      const c=e.target.closest('.chip');if(!c)return;
+      const ta=document.getElementById(g.dataset.for);
+      const s=ta.selectionStart??ta.value.length, w=c.textContent;
+      const pre=ta.value.slice(0,s), pad=(pre&&!/\s$/.test(pre))?' ':'';
+      ta.value=pre+pad+w+' '+ta.value.slice(s);
+      const pos=(pre+pad+w+' ').length;ta.focus();ta.setSelectionRange(pos,pos);
+      ta.dispatchEvent(new Event('input'));
+    });
+  });
+
+  /* example tabs (펠드먼 4단계 예시) */
+  const EX=[
+    '프랑스 화가 앙리 마티스가 1908년에 캔버스에 유화로 그린 큰 그림(180×220cm)이다. 방 안에서 <b>한 여인</b>이 식탁 위의 과일 그릇을 정리하고 있다. 벽과 식탁보는 <b>같은 붉은색</b>이고, 그 위에 파란 덩굴무늬가 그려져 있다. 왼쪽 위 <b>창문 밖</b>으로 초록 나무와 흰 꽃이 핀 정원이 보인다.',
+    '화면 대부분을 <mark>붉은색</mark>이 차지하고, 창밖의 초록색과 <mark>보색 대비</mark>를 이룬다. 벽과 식탁보의 덩굴무늬가 <mark>반복</mark>되면서 <mark>곡선</mark>이 <mark>율동</mark>감을 준다. 벽과 식탁이 같은 색이라 <mark>공간감</mark>이 거의 없고 <mark>평면적</mark>이다. 형태에는 뚜렷한 <mark>외곽선</mark>이 있다.',
+    '강렬한 원색과 단순한 형태, 평면적인 면은 <b>야수파</b>의 특징이다. 마티스는 처음에 이 그림을 파란색 계열로 그렸다가 붉은색으로 다시 칠했다고 한다. 실제 색보다 <b>색이 주는 느낌</b>을 더 중요하게 여긴 것 같다. 평화로운 방 안의 여인을 통해 편안하고 행복한 일상을 보여 주려 한 것 같다.',
+    '<b>형식주의 관점</b>에서 보면, 붉은색과 초록색의 대비, 반복되는 곡선 무늬가 잘 어우러져 화면 전체가 하나의 장식처럼 아름답다. <b>표현주의 관점</b>에서도, 처음엔 빨간색이 강렬했지만 볼수록 따뜻하고 즐거운 감정이 전해진다. 형태가 실제와 달라 서툴러 보일 수 있지만, 색으로 감정을 전한 점에서 <b>감상할 가치가 충분한 작품</b>이라고 판단한다.'
+  ];
+  const exBody=document.getElementById('exBody');
+  const exBtns=[...document.querySelectorAll('[data-ex]')];
+  function showEx(i){exBtns.forEach((b,k)=>b.classList.toggle('on',k===i));exBody.innerHTML=EX[i]}
+  exBtns.forEach(b=>b.addEventListener('click',()=>showEx(+b.dataset.ex)));showEx(0);
+
+  /* zoom */
+  const zoom=document.getElementById('zoom');
+  document.querySelectorAll('[data-zoom]').forEach(f=>f.addEventListener('click',()=>{zoom.classList.add('on');zoom.scrollTo((zoom.scrollWidth-zoom.clientWidth)/2,0)}));
+  zoom.addEventListener('click',e=>{if(e.target.tagName!=='IMG'||e.target.closest('.x'))zoom.classList.remove('on')});
+  zoom.querySelector('.x').addEventListener('click',()=>zoom.classList.remove('on'));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')zoom.classList.remove('on')});
+
+  /* 기술 연습 */
+  const SORT=[
+    {t:'가운데에서 두 사람이 서로 맞붙어 있다.',a:1,w:'눈에 보이는 사실이에요.'},
+    {t:'씨름 구경이 무척 흥겨워 보인다.',a:0,w:'‘흥겹다’는 내 느낌이에요. 몸풀기 칸이나 판단 단계에 어울려요.'},
+    {t:'배경 없이 사람들만 그려져 있다.',a:1,w:'누가 봐도 똑같이 보이는 사실이에요.'},
+    {t:'작가는 서민들의 즐거움을 보여 주고 싶었을 것이다.',a:0,w:'작가의 의도를 짐작하는 건 해석 단계예요.'},
+    {t:'종이에 먹으로 그리고 옅게 색을 칠했다.',a:1,w:'재료와 기법도 기술에 들어가요.'},
+    {t:'김홍도는 최고의 풍속화가이다.',a:0,w:'가치를 매기는 건 판단 단계예요.'}
+  ];
+  const sorter=document.getElementById('sorter');
+  sorter.innerHTML=SORT.map((s,i)=>'<div class="sr" data-i="'+i+'"><span>'+s.t+'</span><div class="bt"><button data-v="1">기술이에요</button><button data-v="0">아니에요</button></div><span class="why"></span></div>').join('');
+  function drawSort(){
+    let n=0,r=0;
+    sorter.querySelectorAll('.sr').forEach(row=>{
+      const i=+row.dataset.i, v=store.sort[i], has=v===0||v===1, ok=has&&v===SORT[i].a;
+      row.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',has&&+b.dataset.v===v));
+      row.classList.toggle('right',ok);row.classList.toggle('wrong',has&&!ok);
+      row.querySelector('.why').textContent=has?(ok?'✔ ':'✘ ')+SORT[i].w:'';
+      if(has){n++;if(ok)r++}
+    });
+    document.getElementById('sortRes').textContent=n<SORT.length?n+'/'+SORT.length+'개 골랐어요.':SORT.length+'개 중 '+r+'개 맞혔어요! 이제 〈씨름〉에서 보이는 사실만 모아 기술해 봐요.';
+  }
+  sorter.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;store.sort[b.closest('.sr').dataset.i]=+b.dataset.v;save();drawSort()});
+  drawSort();
+
+  /* 판단 관점 */
+  const views=[...document.querySelectorAll('.view')];
+  function drawViews(){
+    views.forEach(b=>{const on=!!store.views[b.dataset.v];b.setAttribute('aria-pressed',on);document.querySelector('.vq[data-q="'+b.dataset.v+'"]').classList.toggle('on',on)});
+  }
+  views.forEach(b=>b.addEventListener('click',()=>{store.views[b.dataset.v]=!store.views[b.dataset.v];save();drawViews()}));
+  drawViews();
+  const esc=s=>s.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+  function showW0(){const v=(store.w0||'').trim();document.getElementById('w0show').innerHTML=v?'내 첫 느낌: “'+esc(v)+'”':'1단계 몸풀기에서 첫 느낌을 적으면 여기에 보여요.'}
+
+  /* report */
+  const PARTS=[['첫 느낌','w0','var(--ink-2)'],['기술','d1','var(--s1)'],['분석','a1','var(--s2)'],['해석','i1','var(--s3)'],['새 제목','i2','var(--s3)'],['모방론 관점','j1','var(--s4)'],['형식주의 관점','j2','var(--s4)'],['표현주의 관점','j3','var(--s4)'],['맥락주의 관점','j4','var(--s4)'],['최종 판단','e4','var(--s4)'],['달라진 생각','e1','var(--s4)']];
+  const OPT=['j1','j2','j3','j4'];
+  const parts=()=>PARTS.filter(([,id])=>!OPT.includes(id)||(store[id]||'').trim());
+  function buildReport(){
+    document.getElementById('report').innerHTML='<h3 style="margin-bottom:4px">김홍도 〈씨름〉 감상문</h3><p style="color:var(--ink-2);margin:0 0 8px;font-size:14px">펠드먼 비평 4단계</p>'+
+      parts().map(([t,id,c])=>{const v=(store[id]||'').trim();return '<div class="row" style="--c:'+c+'"><div class="tag">'+t+'</div><div class="txt'+(v?'':' empty')+'">'+(v?esc(v):'아직 쓰지 않았어요')+'</div></div>'}).join('');
+  }
+  const toast=m=>{const t=document.getElementById('toast');t.textContent=m;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1800)};
+  document.getElementById('copy').addEventListener('click',async()=>{
+    const txt='김홍도 〈씨름〉 감상문 (펠드먼 비평 4단계)\n\n'+parts().map(([t,id])=>'['+t+']\n'+((store[id]||'').trim()||'-')).join('\n\n');
+    try{await navigator.clipboard.writeText(txt);toast('복사했어요!')}catch(e){toast('복사하지 못했어요. 직접 선택해 복사해 주세요.')}
+  });
+  document.getElementById('print').addEventListener('click',()=>window.print());
+  document.getElementById('reset').addEventListener('click',()=>{
+    if(!confirm('쓴 내용을 모두 지울까요?'))return;
+    store={sort:{},views:{}};save();
+    document.querySelectorAll('[data-save]').forEach(el=>{if(el.type==='checkbox')el.checked=false;else el.value=''});
+    document.querySelectorAll('[data-count]').forEach(c=>count(c.dataset.count));
+    drawSort();drawViews();buildReport();toast('모두 지웠어요');
+  });
+  const h0=parseInt(location.hash.slice(1));if(h0>=0&&h0<=5)go(h0);
+})();
+</script>
+</body>
+</html>
